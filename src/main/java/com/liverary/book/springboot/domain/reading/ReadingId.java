@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Embeddable
 @Getter
 public class ReadingId implements Serializable {
-    @Column(name = "reading_id")
-    private String bookey;
-    private String userKey;
+    @Column
+    private Long bookey;
+    private Long userKey;
 }
