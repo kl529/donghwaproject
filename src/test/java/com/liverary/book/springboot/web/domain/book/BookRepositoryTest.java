@@ -25,15 +25,15 @@ public class BookRepositoryTest {
 
     @Test
     public void 게시글저장_불러오기(){
-        String title = "title1";
-        String author = "author1";
-        String country = "country";
-        String publisher = "publisher";
-        String bookContent = "content";
-        String bookCover = "cover";
-        String bookIntro = "bookIntro";
+        String title = "title2";
+        String author = "author2";
+        String country = "country2";
+        String publisher = "publisher2";
+        String bookContent = "content2";
+        String bookCover = "cover2";
+        String bookIntro = "bookIntro2";
         int totalPage = 4;
-        Date registeredDate = Date.valueOf("2020-01-01");
+        Date registeredDate = Date.valueOf("2020-01-03");
         Date publishedDate = Date.valueOf("2020-01-30");
 
         bookRepository.save(Book.builder().title(title).author(author).publisher(publisher).country(country).bookIntro(bookIntro).bookCover(bookCover).bookContent(bookContent).registeredDate(registeredDate).publishedDate(publishedDate).build());

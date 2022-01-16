@@ -2,12 +2,15 @@ package com.liverary.book.springboot.service.dto;
 
 import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.domain.book.BookRepository;
+import com.liverary.book.springboot.web.dto.BookIntroDto;
 import com.liverary.book.springboot.web.dto.BookResponseDto;
 import com.liverary.book.springboot.web.dto.BookSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -22,4 +25,9 @@ public class BookService {
         Book entity = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 id = " + id));
         return new BookResponseDto(entity);
     }
+    @Transactional(readOnly = true)
+    public List<BookIntroDto> findAllDesc(){
+        return bookRepository.findAllDesc().stream().map(BookIntroDto::new).collect(Collectors.toList());
+    }
+
 }
