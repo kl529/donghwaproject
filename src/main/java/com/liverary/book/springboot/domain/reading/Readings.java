@@ -1,6 +1,5 @@
 package com.liverary.book.springboot.domain.reading;
 
-import com.liverary.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,37 +9,66 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Readings extends BaseTimeEntity {
+@Builder
+public class Readings {
 
-    @EmbeddedId
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private ReadingId ReadKey;
+    private Long ID;
 
-    @Column(length = 1000, nullable = false)
+    @Column(nullable = false)
     private int currentPage;
 
-    @Column(length = 5, nullable = false)
+    @Column(nullable = false)
     private int score;
 
     @Column(nullable = false)
-    private boolean isWrittenBookReport = false;
+    private int isWrittenBookReport;
 
-    @Column(length = 1000, nullable = false)
     private String bookReport;
 
+    @Column(nullable = false)
+    private Long userKey;
+
+    @Column(nullable = false)
+    private Long bookKey;
+
     @Builder
-    public Readings(int currentPage, int score, boolean isWrittenBookReport, String bookReport) {
+    public Readings(Long id, int currentPage, int score, int isWrittenBookReport, String bookReport, Long userKey, Long bookKey) {
+        this.ID = id;
         this.currentPage = currentPage;
         this.score = score;
         this.isWrittenBookReport = isWrittenBookReport;
         this.bookReport = bookReport;
+        this.userKey = userKey;
+        this.bookKey = bookKey;
     }
 
-    public void pageUpdate(int currentPage) {
+    public void update(int currentPage, int score, int isWrittenBookReport, String bookReport, Long userKey, Long bookKey) {
         this.currentPage = currentPage;
-    }
-    public void detailUpdate(boolean isWrittenBookReport, String bookReport) {
+        this.score = score;
         this.isWrittenBookReport = isWrittenBookReport;
         this.bookReport = bookReport;
+        this.userKey = userKey;
+        this.bookKey = bookKey;
+    }
+
+
+    public void bookReportUpdate(String bookReport) {
+        this.isWrittenBookReport = 1;
+        this.bookReport = bookReport;
+    }
+
+    public void scoreUpdate(int score) {
+        this.score = score;
+    }
+
+    public void pageUpdate(int option) {
+        if (option == 1){ //1이면 페이지 추가
+            this.currentPage++;
+        }
+        else if(option == 0){
+            this.currentPage--;
+        }
     }
 }

@@ -5,10 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ReadingsRepository extends JpaRepository<Readings, ReadingId> {
+public interface ReadingsRepository extends JpaRepository<Readings, Long> {
 
-    @Query("SELECT p FROM Readings p ORDER BY p.ReadKey.bookey DESC")
-    List<Readings> findAllDesc();
-
-
+//    @Query("SELECT p FROM Readings p ORDER BY p.id DESC")
+//    List<Readings> findAllDesc();
 }
