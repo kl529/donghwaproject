@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface ReadingsRepository extends JpaRepository<Readings, Long> {
 
-//    @Query("SELECT p FROM Readings p ORDER BY p.id DESC")
-//    List<Readings> findAllDesc();
+    @Query("SELECT p FROM Readings p WHERE p.bookKey = ?1 ORDER BY p.ID DESC")
+    List<Readings> findAllDescbyBook(Long idx);
+
+    @Query("SELECT p FROM Readings p WHERE p.bookKey = ?1 ORDER BY p.ID DESC")
+    List<Readings> findAllDescbyUser(Long idx);
 }

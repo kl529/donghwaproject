@@ -1,10 +1,9 @@
 package com.liverary.book.springboot.web.dto;
-
 import com.liverary.book.springboot.domain.reading.Readings;
 import lombok.Getter;
 
 @Getter
-public class ReadingsResponseDto {
+public class ReadingsListResponseDto {
     private Long ID;
     private Long bookKey;
     private Long userKey;
@@ -13,7 +12,7 @@ public class ReadingsResponseDto {
     private int iswrittenbookreport;
     private String bookreport;
 
-    public ReadingsResponseDto(Readings entity) {
+    public ReadingsListResponseDto(Readings entity) {
         this.ID = entity.getID();
         this.bookKey = entity.getBookKey();
         this.userKey = entity.getUserKey();

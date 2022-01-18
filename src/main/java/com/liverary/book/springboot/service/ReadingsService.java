@@ -2,14 +2,14 @@ package com.liverary.book.springboot.service;
 
 import com.liverary.book.springboot.domain.reading.Readings;
 import com.liverary.book.springboot.domain.reading.ReadingsRepository;
-import com.liverary.book.springboot.web.dto.ReadingsCalcCurrentPageDto;
-import com.liverary.book.springboot.web.dto.ReadingsResponseDto;
-import com.liverary.book.springboot.web.dto.ReadingsSaveRequestDto;
-import com.liverary.book.springboot.web.dto.ReadingsUpdateRequestDto;
+import com.liverary.book.springboot.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -96,10 +96,20 @@ public class ReadingsService {
         return new ReadingsResponseDto(entity);
     }
 
-//    @Transactional(readOnly = true)
-//    public List<ReadingsListResponseDto> findAllDesc() {
+    @Transactional(readOnly = true)
+    public List<ReadingsListResponseDto> findAllDesc(Long id, int option) {
+        if(option == 0){ //option이 0 일때 --> Bookkey로 검색
+            return ReadingsRepository.findAllDescbyBook(id).stream()
+                    .map(ReadingsListResponseDto::new)
+                    .collect(Collectors.toList());
+        }
+        else{ //option이 1일때 --> Userkey로 검색
+            return ReadingsRepository.findAllDescbyUser(id).stream()
+                    .map(ReadingsListResponseDto::new)
+                    .collect(Collectors.toList());
+        }
 //        return ReadingsRepository.findAllDesc().stream()
 //                .map(ReadingsListResponseDto::new)
 //                .collect(Collectors.toList());
-//    }
+    }
 }

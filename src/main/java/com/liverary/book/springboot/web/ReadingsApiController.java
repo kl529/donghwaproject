@@ -1,10 +1,7 @@
 package com.liverary.book.springboot.web;
 
 import  com.liverary.book.springboot.service.*;
-import com.liverary.book.springboot.web.dto.ReadingsCalcCurrentPageDto;
-import com.liverary.book.springboot.web.dto.ReadingsResponseDto;
-import com.liverary.book.springboot.web.dto.ReadingsSaveRequestDto;
-import com.liverary.book.springboot.web.dto.ReadingsUpdateRequestDto;
+import com.liverary.book.springboot.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -56,8 +55,8 @@ public class ReadingsApiController {
         return ReadingsService.findById(id);
     }
 
-//    @GetMapping("/api/v1/readings/list")
-//    public List<ReadingsListResponseDto> findAll() {
-//        return ReadingsService.findAllDesc();
-//    }
+    @GetMapping("/api/v1/readings/list/{id}/{option}")
+    public List<ReadingsListResponseDto> findAll(@PathVariable Long id, int option) {
+        return ReadingsService.findAllDesc(id, option);
+    }
 }
