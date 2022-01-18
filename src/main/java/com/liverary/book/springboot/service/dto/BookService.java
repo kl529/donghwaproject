@@ -6,6 +6,7 @@ import com.liverary.book.springboot.web.dto.BookIntroDto;
 import com.liverary.book.springboot.web.dto.BookResponseDto;
 import com.liverary.book.springboot.web.dto.BookSaveRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,11 +28,13 @@ public class BookService {
     }
     @Transactional(readOnly = true)
     public List<BookIntroDto> findAllDesc(){
-        return bookRepository.findAllDesc().stream().map(BookIntroDto::new).collect(Collectors.toList());
+
+        return bookRepository.findAll(Sort.by(Sort.Direction.DESC,"registeredDate")).stream().map(BookIntroDto::new).collect(Collectors.toList());
     }
     @Transactional(readOnly = true)
     public List <BookIntroDto> findBySearch(String str ){
         return bookRepository.findBySearch(str).stream().map(BookIntroDto::new).collect(Collectors.toList());
     }
+
 
 }
