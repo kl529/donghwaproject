@@ -29,5 +29,9 @@ public class BookService {
     public List<BookIntroDto> findAllDesc(){
         return bookRepository.findAllDesc().stream().map(BookIntroDto::new).collect(Collectors.toList());
     }
+    @Transactional(readOnly = true)
+    public List <BookIntroDto> findBySearch(String str ){
+        return bookRepository.findBySearch(str).stream().map(BookIntroDto::new).collect(Collectors.toList());
+    }
 
 }

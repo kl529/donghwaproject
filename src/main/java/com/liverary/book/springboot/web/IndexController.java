@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
     private final BookService bookService;
 
-    @GetMapping("/")
-    public String index (Model model ){
-        model.addAttribute("books", bookService.findAllDesc());
-        return "index";
-    }
+
+
 }
