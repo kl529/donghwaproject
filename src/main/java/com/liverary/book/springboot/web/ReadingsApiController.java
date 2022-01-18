@@ -45,17 +45,17 @@ public class ReadingsApiController {
     }
 
     @DeleteMapping("/api/v1/readings/{id}")
-    public Long delete(@PathVariable Long id) {
+    public Long delete(@PathVariable Long id) { // 데이터 삭제하는 API
         ReadingsService.delete(id);
         return id;
     }
 
-    @GetMapping("/api/v1/readings/{id}")
+    @GetMapping("/api/v1/readings/{id}") // -> id에 따라 모든 인자값 받아오는 API
     public ReadingsResponseDto findById(@PathVariable Long id) {
         return ReadingsService.findById(id);
     }
 
-    @GetMapping("/api/v1/readings/list/{id}/{option}")
+    @GetMapping("/api/v1/readings/list/{id}/{option}") // -> option과 id에 따라 bookkey, userkey로 readings table을 읽는 함수
     public List<ReadingsListResponseDto> findAll(@PathVariable Long id, int option) {
         return ReadingsService.findAllDesc(id, option);
     }

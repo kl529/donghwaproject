@@ -3,6 +3,7 @@ package com.liverary.book.springboot.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liverary.book.springboot.domain.reading.Readings;
 import com.liverary.book.springboot.domain.reading.ReadingsRepository;
+import com.liverary.book.springboot.web.dto.ReadingsCalcCurrentPageDto;
 import com.liverary.book.springboot.web.dto.ReadingsSaveRequestDto;
 import com.liverary.book.springboot.web.dto.ReadingsUpdateRequestDto;
 import org.junit.After;
@@ -88,19 +89,23 @@ public class ReadingsApiControllerTest {
         String expectedContent = "변경완료";
         int expectedscore = 4;
 
-        ReadingsUpdateRequestDto requestDto = ReadingsUpdateRequestDto.builder()
-                .currentPage(141)
-                .score(expectedscore)
-                .isWrittenBookReport(1)
-                .bookReport(expectedContent)
-                .userKey(100L)
-                .bookKey(10L)
+        ReadingsCalcCurrentPageDto requestDto = ReadingsCalcCurrentPageDto.builder()
+                .option(1)
                 .build();
 
-        String url = "http://localhost:" + port + "/api/v1/readings/" + updateId;
+//        ReadingsUpdateRequestDto requestDto = ReadingsUpdateRequestDto.builder()
+//                .currentPage(141)
+//                .score(expectedscore)
+//                .isWrittenBookReport(1)
+//                .bookReport(expectedContent)
+//                .userKey(100L)
+//                .bookKey(10L)
+//                .build();
+
+        String url = "http://localhost:" + port + "/api/v1/readings/calcpage/" + updateId;
 
         //when
-        HttpEntity<ReadingsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
+        HttpEntity<ReadingsCalcCurrentPageDto> requestEntity = new HttpEntity<>(requestDto);
         ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -108,7 +113,7 @@ public class ReadingsApiControllerTest {
 
         //then
         List<Readings> all = readingsRepository.findAll();
-        assertThat(all.get(0).getBookReport()).isEqualTo(expectedContent);
-        assertThat(all.get(0).getScore()).isEqualTo(expectedscore);
+        assertThat(all.get(0).getCurrentPage()).isEqualTo(142);
+//        assertThat(all.get(0).getScore()).isEqualTo(expectedscore);
     }
 }
