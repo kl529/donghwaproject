@@ -1,11 +1,13 @@
 package com.liverary.book.springboot.domain.book;
 
+import com.liverary.book.springboot.domain.reading.Reading;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -33,7 +35,7 @@ public class Book {
     @Column(length = 500 , nullable = false)
     private String bookCover;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "TEXT")
     private String bookContent;
 
     @Column(nullable = false)
@@ -44,6 +46,9 @@ public class Book {
 
     @Column(nullable = false)
     private Date publishedDate;
+
+    @OneToMany(mappedBy = "book",cascade = CascadeType.REMOVE)
+    private List<Reading> list ;
 
     @Builder
     public Book(String title, String author, String publisher, String country, String bookIntro, String bookCover, String bookContent, int totalPage, Date registeredDate, Date publishedDate){

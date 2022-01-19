@@ -2,6 +2,10 @@ package com.liverary.book.springboot.web.domain.book;
 
 import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.domain.book.BookRepository;
+import com.liverary.book.springboot.domain.reading.Reading;
+import com.liverary.book.springboot.domain.reading.ReadingRepository;
+import com.liverary.book.springboot.domain.user.User;
+import com.liverary.book.springboot.domain.user.UserRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,11 +25,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class BookRepositoryTest {
     @Autowired
     BookRepository bookRepository;
-
+    @Autowired
+    ReadingRepository readingRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Test
     public void 게시글저장_불러오기(){
-        String title = "title2";
+        String title = "title4";
         String author = "author2";
         String country = "country2";
         String publisher = "publisher2";
@@ -49,5 +56,34 @@ public class BookRepositoryTest {
             System.out.println(book);
         }
     }
+    @Test
+    public void set_up(){
+        Book book = Book.builder().title("this is title1").author("author3").publisher("publisher3").bookIntro("ddd").bookCover("bookCover").bookContent("here once lived two brothers named Ali Baba and \n" +
+                "Cassim. They came from a very poor family. Both of the \n" +
+                "brothers were married. Ali Baba lived with his poor wife in \n" +
+                "a small house. He had to cut down trees to sell in the \n" +
+                "marketplace for money. Cassim lived in a big house \n" +
+                "because he married a rich girl. Her family had a lot of " ).publishedDate(Date.valueOf("2022-11-23")).registeredDate(Date.valueOf("2011-11-22")).build();
+        bookRepository.save(book);
+        User user = User.builder().email("didddmstj98@naver.com").build();
+        userRepository.save(user);
+    }
+    @Test
+    public void save_Reading(){
+        Book book = bookRepository.findAll().get(0);
+        User user = userRepository.findAll().get(0);
+        readingRepository.save(Reading.builder().book(book).user(user).score(10).bookReport("bookReport").isWrittenBookReport(0).build());
+    }
+    @Test
+    public void delete_Book(){
+        Book book = bookRepository.findAll().get(1);
+        bookRepository.delete(book);
+    }
+    @Test
+    public void delete_User(){
+        User user = userRepository.findAll().get(0);
+        userRepository.delete(user);
+    }
+
 
 }
