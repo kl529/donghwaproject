@@ -19,6 +19,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
+
 group 'com.liverary.book'
 version '1.0.4-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
 sourceCompatibility = 1.8   
@@ -44,5 +45,8 @@ dependencies {
     compile("org.mariadb.jdbc:mariadb-java-client")
     compile("mysql:mysql-connector-java:8.0.21")
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    
+//    compile('org.springframework.boot:spring-boot-starter-oauth2-client') // 여기서 login화면이 뜨게됨
+//    testCompile("org.springframework.security:spring-security-test")
 
 }
