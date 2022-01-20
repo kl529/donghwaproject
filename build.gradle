@@ -29,6 +29,12 @@ repositories {
 }
 
 dependencies {
+    implementation platform('com.google.cloud:libraries-bom:24.2.0')
+    implementation 'com.google.cloud:google-cloud-speech'
+
+    implementation platform('com.google.cloud:libraries-bom:24.2.0')
+    implementation 'com.google.cloud:google-cloud-texttospeech'
+
     compileOnly 'org.projectlombok:lombok:1.18.10'
     annotationProcessor 'org.projectlombok:lombok:1.18.10'
     compile('org.springframework.boot:spring-boot-starter-web')
