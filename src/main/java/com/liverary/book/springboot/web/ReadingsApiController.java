@@ -59,4 +59,14 @@ public class ReadingsApiController {
     public List<ReadingsListResponseDto> findAll(@PathVariable Long id, int option) {
         return ReadingsService.findAllDesc(id, option);
     }
+
+    @GetMapping("/api/v1/readings/record") // -> id에 따라 모든 인자값 받아오는 API
+    public void testing() throws Exception {
+        TTSService.synthesizeText("hello world");
+//        TTSService.mainob();
+    }
+    @PutMapping("/api/v1/readings/record/{id}")
+    public Long record(@PathVariable Long id, @RequestBody ReadingsUpdateRequestDto requestDto) { // 녹음해서 넣는건데.. 아직 안됨
+        return ReadingsService.update(id, requestDto);
+    }
 }
