@@ -63,4 +63,9 @@ public class Book {
         this.publishedDate = publishedDate;
         this.totalPage= totalPage;
     }
+    public void update (String bookIntro, String bookContent, String bookCover){
+        this.bookIntro = bookIntro;
+        this.bookContent = bookContent;
+        this.bookCover = bookCover;
+    }
 }

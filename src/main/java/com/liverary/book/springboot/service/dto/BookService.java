@@ -5,6 +5,7 @@ import com.liverary.book.springboot.domain.book.BookRepository;
 import com.liverary.book.springboot.web.dto.BookIntroDto;
 import com.liverary.book.springboot.web.dto.BookResponseDto;
 import com.liverary.book.springboot.web.dto.BookSaveRequestDto;
+import com.liverary.book.springboot.web.dto.BookUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,11 @@ public class BookService {
     public List <BookIntroDto> findBySearch(String str ){
         return bookRepository.findBySearch(str).stream().map(BookIntroDto::new).collect(Collectors.toList());
     }
-
+    @Transactional
+    public Long update(Long id, BookUpdateRequestDto requestDto){
+        Book book = bookRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+        book.update(requestDto.getBookIntro(), requestDto.getBookContent(), requestDto.getBookCover() );
+        return id;
+    }
 
 }

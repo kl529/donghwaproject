@@ -31,7 +31,7 @@ public class BookRepositoryTest {
     UserRepository userRepository;
 
     @Test
-    public void 게시글저장_불러오기(){
+    public void 게시글저장불러오기(){
         String title = "title4";
         String author = "author2";
         String country = "country2";
@@ -71,7 +71,7 @@ public class BookRepositoryTest {
     @Test
     public void save_Reading(){
         Book book = bookRepository.findAll().get(0);
-        User user = userRepository.findAll().get(0);
+        User user = userRepository.findAll().get(1);
         readingRepository.save(Reading.builder().book(book).user(user).score(10).bookReport("bookReport").isWrittenBookReport(0).build());
     }
     @Test

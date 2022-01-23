@@ -9,12 +9,12 @@ public class BookIntroDto {
     private String title;
     private String bookCover;
     private String author;
-    private String publsher;
+    private String publisher;
 
     public BookIntroDto (Book entity){
         this.title = entity.getTitle();
         this.bookCover = entity.getBookCover();
         this.author = entity.getAuthor();
-        this.publsher = entity.getPublisher();
+        this.publisher = entity.getPublisher();
     }
 }

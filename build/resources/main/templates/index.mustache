@@ -1,0 +1,29 @@
+{{>layout/header}}
+<div class = "col-md-12">
+    <div class = "row">
+        <div class = "col-md-6">
+            <a href = "/posts/save" role = "button" class = "btn btn-primary"> 책 등록</a>
+        </div>
+    </div>
+</div>
+<br>
+<!--목록 출력 영역-->
+<table class = "table table-horizontal table-bordered">
+    <thead class = "thead-strong">
+    <tr>
+        <th> 책이름 </th>
+        <th> 저자명 </th>
+        <th> 출판사 </th>
+    </tr>
+    </thead>
+    <tbody id = "tbody">
+    {{#books}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{author}}</td>
+            <td>{{publisher}}</td>
+        </tr>
+    {{/books}}
+    </tbody>
+</table>
+{{>layout/footer}}
