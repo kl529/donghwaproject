@@ -1,3 +1,6 @@
 .gradle
 .idea
 /.metadata/
+
+application-google.properties
+application-oauth.properties

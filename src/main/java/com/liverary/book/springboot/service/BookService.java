@@ -2,6 +2,7 @@ package com.liverary.book.springboot.service;
 
 import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.domain.book.BookRepository;
+import com.liverary.book.springboot.web.dto.BookListResponseDto;
 import com.liverary.book.springboot.web.dto.book.BookIntroDto;
 import com.liverary.book.springboot.web.dto.book.BookResponseDto;
 import com.liverary.book.springboot.web.dto.book.BookSaveRequestDto;
@@ -30,12 +31,28 @@ public class BookService {
     // 등록일 기준 정렬 후 책 정보 출력
     @Transactional(readOnly = true)
     public List<BookIntroDto> findAllDesc(){
-
-        return bookRepository.findAll(Sort.by(Sort.Direction.DESC,"registeredDate")).stream().map(BookIntroDto::new).collect(Collectors.toList());
+        return bookRepository.findAll(
+                Sort.by(Sort.Direction.DESC,"createDate"))
+                .stream()
+                .map(BookIntroDto::new)
+                .collect(Collectors.toList());
     }
+
     // 검색어 기능
     @Transactional(readOnly = true)
     public List <BookIntroDto> findBySearch(String str ){
         return bookRepository.findBySearch(str).stream().map(BookIntroDto::new).collect(Collectors.toList());
     }
+
+    //
+
+    @Transactional
+    public void delete(Long id){
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 책이 없습니다. id=" + id));
+
+        bookRepository.delete(book);
+    }
+
+
 }

@@ -1,22 +1,18 @@
 package com.liverary.book.springboot.domain.user;
 
-<<<<<<< HEAD
 import com.liverary.book.springboot.domain.reading.Reading;
-=======
 import com.liverary.book.springboot.domain.BaseTimeEntity;
->>>>>>> origin/ykm
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-<<<<<<< HEAD
 import javax.persistence.*;
+
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
 @Entity(name = "user")
-public class User {
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userKey;
@@ -26,31 +22,6 @@ public class User {
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
     private List<Reading> list ;
-
-    @Builder
-    public User(String email){
-        this.email = email;
-    }
-=======
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Getter
-@NoArgsConstructor
-@Entity
-public class User extends BaseTimeEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
-    private String email;
 
     @Enumerated(EnumType.STRING)
     @Column
@@ -66,5 +37,4 @@ public class User extends BaseTimeEntity {
         return this.role.getKey();
     }
 
->>>>>>> origin/ykm
 }
