@@ -1,14 +1,17 @@
 {{! homepage }}
-{{! 관리자로 로그인시 책 등록을 할수있는 버튼을 보이도록 구현하자 }}
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title> liverary homepage </title>
-    <meta http-equiv="Content-Type" content="text/html;
-                                            charset=UTF-8" />
-</head>
-<body>
+{{! 관리자로 로그인시에만 책 등록을 할수있는 버튼을 보이도록 구현하자 }}
+
+{{>layout/header}}
 <h1> 동화팅 liverary 홈페이지 </h1>
 
-</body>
-</html>
+{{! ------ 책 등록 ------ }}
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/book/save" role="button" class="btn btn-primary">책 등록</a>
+        </div>
+    </div>
+</div>
+{{! ------ 책 등록 ------ }}
+
+{{>layout/footer}}
