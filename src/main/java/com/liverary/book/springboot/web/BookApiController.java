@@ -1,10 +1,5 @@
 package com.liverary.book.springboot.web;
 
-import com.liverary.book.springboot.service.dto.BookService;
-import com.liverary.book.springboot.web.dto.BookIntroDto;
-import com.liverary.book.springboot.web.dto.BookResponseDto;
-import com.liverary.book.springboot.web.dto.BookSaveRequestDto;
-import com.liverary.book.springboot.web.dto.BookUpdateRequestDto;
 import com.liverary.book.springboot.service.BookService;
 import com.liverary.book.springboot.web.dto.book.BookIntroDto;
 import com.liverary.book.springboot.web.dto.book.BookResponseDto;
@@ -12,9 +7,6 @@ import com.liverary.book.springboot.web.dto.book.BookSaveRequestDto;
 import com.liverary.book.springboot.web.dto.book.BookUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import com.liverary.book.springboot.service.BookService;
-import com.liverary.book.springboot.web.dto.book.BookResponseDto;
-import com.liverary.book.springboot.web.dto.book.BookSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,11 +31,8 @@ public class BookApiController {
     }
 
     @PutMapping("/api/v1/books/{id}")
-    public Long update(@PathVariable Long id , @RequestBody BookUpdateRequestDto requestDto){
+    public Long update(@PathVariable Long id , @RequestBody BookUpdateRequestDto requestDto) {
         return bookService.update(id, requestDto);
-    @GetMapping("/api/v1/books/search/{search}")
-    public List<BookIntroDto> findBySearch(@PathVariable String search){
-        return bookService.findBySearch(search);
     }
 
     @GetMapping("/api/v1/books/list")
@@ -54,10 +43,6 @@ public class BookApiController {
    // public List<BookIntroDto> findBySearch(@PathVariable String search){
     //    return bookService.findBySearch(search);
    // }
-
-
-
-
 
     @DeleteMapping("/api/v1/books/{id}")
     public Long delete(@PathVariable Long id){

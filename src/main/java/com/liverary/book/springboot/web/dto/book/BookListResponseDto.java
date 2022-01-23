@@ -1,4 +1,4 @@
-package com.liverary.book.springboot.web.dto;
+package com.liverary.book.springboot.web.dto.book;
 
 import com.liverary.book.springboot.domain.book.Book;
 import com.fasterxml.jackson.annotation.JsonFormat;

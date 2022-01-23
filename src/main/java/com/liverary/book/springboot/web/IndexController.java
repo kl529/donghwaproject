@@ -1,9 +1,9 @@
 package com.liverary.book.springboot.web;
 
-import com.liverary.book.springboot.service.dto.BookService;
-import com.liverary.book.springboot.web.dto.BookIntroDto;
-import com.liverary.book.springboot.web.dto.BookResponseDto;
-import com.liverary.book.springboot.web.dto.BookUpdateRequestDto;
+import com.liverary.book.springboot.service.BookService;
+import com.liverary.book.springboot.web.dto.book.BookIntroDto;
+import com.liverary.book.springboot.web.dto.book.BookResponseDto;
+import com.liverary.book.springboot.web.dto.book.BookUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +21,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model){
         model.addAttribute("books",bookService.findAllDesc());
-        return "index";
+        return "welcome";
     }
     @GetMapping("/books/update/{id}")
     public String bookUpdate(@PathVariable Long id, Model model ){
@@ -34,5 +34,5 @@ public class IndexController {
         model.addAttribute("books", bookService.findBySearch(search));
         return "search";
     }
-    }
+}
 
