@@ -1,6 +1,7 @@
 package com.liverary.book.springboot.domain.book;
 
 import com.liverary.book.springboot.domain.reading.Reading;
+import com.liverary.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,8 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Entity(name = "book")
-
-public class Book {
+@Entity
+public class Book extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookKey;
@@ -35,14 +35,11 @@ public class Book {
     @Column(length = 500 , nullable = false)
     private String bookCover;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String bookContent;
 
     @Column(nullable = false)
     private int totalPage;
-
-    @Column(nullable = false)
-    private Date registeredDate;
 
     @Column(nullable = false)
     private Date publishedDate;
@@ -51,7 +48,7 @@ public class Book {
     private List<Reading> list ;
 
     @Builder
-    public Book(String title, String author, String publisher, String country, String bookIntro, String bookCover, String bookContent, int totalPage, Date registeredDate, Date publishedDate){
+    public Book(String title, String author, String publisher, String country, String bookIntro, String bookCover, String bookContent, int totalPage, Date publishedDate){
         this.title = title ;
         this.author = author;
         this.publisher = publisher;
@@ -59,7 +56,6 @@ public class Book {
         this.bookIntro  = bookIntro;
         this.bookCover = bookCover;
         this.bookContent = bookContent;
-        this.registeredDate = registeredDate;
         this.publishedDate = publishedDate;
         this.totalPage= totalPage;
     }

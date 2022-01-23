@@ -5,10 +5,9 @@ import com.liverary.book.springboot.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+
 @Getter
 @NoArgsConstructor
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"book_key","user_key"}))
@@ -20,13 +19,17 @@ public class Reading {
     private Long readingKey;
 
     @ManyToOne
-    @JoinColumn(name = "book_key")
-    private Book book;
-
-    @ManyToOne
     @JoinColumn(name = "user_key")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "book_key")
+    private Book book;
+
+    @Column(nullable = false)
+    private int currentPage;
+
+    @Column(nullable = false)
     private int score;
 
     @Column(nullable = false)
@@ -36,14 +39,43 @@ public class Reading {
     private String bookReport;
 
     @Builder
-    public Reading(Book book , User user, int score, int isWrittenBookReport, String bookReport){
+    public Reading(Book book , User user, int currentPage, int score, int isWrittenBookReport, String bookReport) {
         this.book = book ;
         this.user = user;
+        this.currentPage = currentPage;
         this.score = score;
         this.isWrittenBookReport = isWrittenBookReport;
         this.bookReport = bookReport;
-
     }
+
+    public void update(Book book , User user, int currentPage, int score, int isWrittenBookReport, String bookReport) {
+        this.book = book ;
+        this.user = user;
+        this.currentPage = currentPage;
+        this.score = score;
+        this.isWrittenBookReport = isWrittenBookReport;
+        this.bookReport = bookReport;
+    }
+
+
+    public void bookReportUpdate(String bookReport) {
+        this.isWrittenBookReport = 1;
+        this.bookReport = bookReport;
+    }
+
+    public void scoreUpdate(int score) {
+        this.score = score;
+    }
+
+    public void pageUpdate(int option) {
+        if (option == 1){ //1이면 페이지 추가
+            this.currentPage++;
+        }
+        else if(option == 0){
+            this.currentPage--;
+        }
+    }
+
     public void setUser (User user){
         this.user = user;
     }

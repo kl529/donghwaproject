@@ -5,6 +5,16 @@ import com.liverary.book.springboot.web.dto.BookIntroDto;
 import com.liverary.book.springboot.web.dto.BookResponseDto;
 import com.liverary.book.springboot.web.dto.BookSaveRequestDto;
 import com.liverary.book.springboot.web.dto.BookUpdateRequestDto;
+import com.liverary.book.springboot.service.BookService;
+import com.liverary.book.springboot.web.dto.book.BookIntroDto;
+import com.liverary.book.springboot.web.dto.book.BookResponseDto;
+import com.liverary.book.springboot.web.dto.book.BookSaveRequestDto;
+import com.liverary.book.springboot.web.dto.book.BookUpdateRequestDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import com.liverary.book.springboot.service.BookService;
+import com.liverary.book.springboot.web.dto.book.BookResponseDto;
+import com.liverary.book.springboot.web.dto.book.BookSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +24,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class BookApiController {
+
     private final BookService bookService;
-    // 새로운 책 저장
-    @PostMapping("/api/v1/books")
+
+    @PostMapping("/api/v1/books/admin")
     public Long save(@RequestBody BookSaveRequestDto requestDto){
         return bookService.save(requestDto);
     }
@@ -30,6 +41,14 @@ public class BookApiController {
     @PutMapping("/api/v1/books/{id}")
     public Long update(@PathVariable Long id , @RequestBody BookUpdateRequestDto requestDto){
         return bookService.update(id, requestDto);
+    @GetMapping("/api/v1/books/search/{search}")
+    public List<BookIntroDto> findBySearch(@PathVariable String search){
+        return bookService.findBySearch(search);
+    }
+
+    @GetMapping("/api/v1/books/list")
+    public List <BookIntroDto> findAllDesc(){
+        return bookService.findAllDesc();
     }
   //  @GetMapping("/api/v1/books/search/{search}")
    // public List<BookIntroDto> findBySearch(@PathVariable String search){
@@ -40,5 +59,9 @@ public class BookApiController {
 
 
 
-
+    @DeleteMapping("/api/v1/books/{id}")
+    public Long delete(@PathVariable Long id){
+        bookService.delete(id);
+        return id;
+    }
 }
