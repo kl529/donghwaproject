@@ -20,5 +20,10 @@ public class IndexController {
     public String bookSave(){
         return "book-save";
     }
+
+    @GetMapping("/book/delete")
+    public String bookDelete(){
+        return "book-delete";
+    }
 }
 
