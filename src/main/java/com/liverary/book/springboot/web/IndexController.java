@@ -1,6 +1,7 @@
 package com.liverary.book.springboot.web;
 
 import com.liverary.book.springboot.service.dto.BookService;
+import com.liverary.book.springboot.web.dto.BookIntroDto;
 import com.liverary.book.springboot.web.dto.BookResponseDto;
 import com.liverary.book.springboot.web.dto.BookUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -28,4 +29,10 @@ public class IndexController {
         model.addAttribute("book", bookResponseDto);
         return "books-update";
     }
-}
+    @GetMapping("/api/v1/books/search/{search}")
+    public String bookSearch(@PathVariable String search,Model model ){
+        model.addAttribute("books", bookService.findBySearch(search));
+        return "search";
+    }
+    }
+

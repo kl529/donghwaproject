@@ -21,20 +21,20 @@ public class BookApiController {
         return bookService.save(requestDto);
     }
 
-    //
-    //@GetMapping("/api/v1/books/{id}")
-    //public BookResponseDto findById(@PathVariable Long id ){
-      //  return bookService.findById(id);
-   // }
+
+    @GetMapping("/api/v1/books/{id}")
+    public BookResponseDto findById(@PathVariable Long id ){
+        return bookService.findById(id);
+    }
 
     @PutMapping("/api/v1/books/{id}")
     public Long update(@PathVariable Long id , @RequestBody BookUpdateRequestDto requestDto){
         return bookService.update(id, requestDto);
     }
-    @GetMapping("/api/v1/books/search/{search}")
-    public List<BookIntroDto> findBySearch(@PathVariable String search){
-        return bookService.findBySearch(search);
-    }
+  //  @GetMapping("/api/v1/books/search/{search}")
+   // public List<BookIntroDto> findBySearch(@PathVariable String search){
+    //    return bookService.findBySearch(search);
+   // }
 
 
 
