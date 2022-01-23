@@ -1,29 +1,27 @@
 package com.liverary.book.springboot.domain.user;
 
+import com.liverary.book.springboot.domain.reading.Reading;
 import com.liverary.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Entity
+@Entity(name = "user")
 public class User extends BaseTimeEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userKey;
 
-    @Column(nullable = false)
+    @Column(length = 500, nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
+    private List<Reading> list ;
 
     @Enumerated(EnumType.STRING)
     @Column

@@ -2,7 +2,6 @@ package com.liverary.book.springboot.web;
 
 import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.domain.book.BookRepository;
-import com.liverary.book.springboot.web.dto.BookSaveRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
