@@ -1,9 +1,9 @@
 package com.liverary.book.springboot.web;
 
-import com.liverary.book.springboot.service.dto.BookService;
-import com.liverary.book.springboot.web.dto.BookIntroDto;
-import com.liverary.book.springboot.web.dto.BookResponseDto;
-import com.liverary.book.springboot.web.dto.BookSaveRequestDto;
+import com.liverary.book.springboot.service.BookService;
+import com.liverary.book.springboot.web.dto.book.BookIntroDto;
+import com.liverary.book.springboot.web.dto.book.BookResponseDto;
+import com.liverary.book.springboot.web.dto.book.BookSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

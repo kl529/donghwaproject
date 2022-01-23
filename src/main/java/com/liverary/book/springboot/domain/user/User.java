@@ -18,6 +18,7 @@ public class User {
 
     @Column(length = 500, nullable = false)
     private String email;
+
     @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
     private List<Reading> list ;
 

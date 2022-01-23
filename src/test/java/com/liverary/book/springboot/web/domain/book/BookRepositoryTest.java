@@ -6,7 +6,6 @@ import com.liverary.book.springboot.domain.reading.Reading;
 import com.liverary.book.springboot.domain.reading.ReadingRepository;
 import com.liverary.book.springboot.domain.user.User;
 import com.liverary.book.springboot.domain.user.UserRepository;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.sql.Date;
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
