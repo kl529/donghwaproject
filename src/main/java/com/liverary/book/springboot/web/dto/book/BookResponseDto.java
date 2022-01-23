@@ -16,7 +16,6 @@ public class BookResponseDto {
     private String bookCover;
     private String bookContent;
     private int totalPage;
-    private Date registeredDate;
     private Date publishedDate;
 
     public BookResponseDto (Book entity){
@@ -29,7 +28,6 @@ public class BookResponseDto {
         this.bookCover = entity.getBookCover();
         this.bookContent = entity.getBookContent();
         this.totalPage = entity.getTotalPage();
-        this.registeredDate = entity.getRegisteredDate();
         this.publishedDate = entity.getPublishedDate();
     }
 }

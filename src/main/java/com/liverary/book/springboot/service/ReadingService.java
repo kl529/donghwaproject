@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-@Service
+@Service("ReadingService")
 public class ReadingService {
     private final ReadingRepository readingRepository;
 

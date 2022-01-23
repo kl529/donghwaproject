@@ -1,4 +1,4 @@
-package com.liverary.book.springboot.web.dto;
+package com.liverary.book.springboot.web.dto.book;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

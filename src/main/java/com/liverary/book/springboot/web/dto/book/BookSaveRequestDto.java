@@ -18,13 +18,12 @@ public class BookSaveRequestDto {
     private String bookCover;
     private String bookContent;
     private int totalPage;
-    private Date registeredDate;
     private Date publishedDate;
 
     @Builder
     public BookSaveRequestDto(String title, String author, String publisher, String country,
                               String bookIntro, String bookCover, String bookContent, int totalPage,
-                              Date registeredDate, Date publishedDate){
+                              Date publishedDate){
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -33,11 +32,10 @@ public class BookSaveRequestDto {
         this.bookCover = bookCover;
         this.bookContent  =bookContent;
         this.totalPage = totalPage;
-        this.registeredDate = registeredDate;
         this.publishedDate = publishedDate;
     }
     public Book toEntity(){
         return Book.builder().title(title).author(author).publisher(publisher).country(country).bookIntro(bookIntro).bookCover(bookCover)
-            .bookContent(bookContent).totalPage(totalPage).registeredDate(registeredDate).publishedDate(publishedDate).build();
+            .bookContent(bookContent).totalPage(totalPage).publishedDate(publishedDate).build();
     }
 }

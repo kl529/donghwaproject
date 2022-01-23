@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseTimeEntity {
-<<<<<<< HEAD
 
     @CreatedDate
     private LocalDateTime createdDate;
@@ -22,14 +21,3 @@ public abstract class BaseTimeEntity {
     private LocalDateTime modifiedDate;
 
 }
-=======
-    // 모든 entity의 상위 클래스가 되어 createdDate와 modifiedDate를 관리
-
-    @CreatedDate
-    private LocalDateTime createDate;
-
-    @LastModifiedDate
-    private LocalDateTime modifiedDate;
-}
-
->>>>>>> origin/ykm

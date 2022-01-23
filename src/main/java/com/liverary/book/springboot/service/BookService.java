@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-@Service
+@Service("BookService")
 public class BookService {
     private final BookRepository bookRepository;
     // 책 저장
@@ -38,6 +38,4 @@ public class BookService {
     public List <BookIntroDto> findBySearch(String str ){
         return bookRepository.findBySearch(str).stream().map(BookIntroDto::new).collect(Collectors.toList());
     }
-
-
 }

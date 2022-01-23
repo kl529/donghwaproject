@@ -1,4 +1,4 @@
-package com.liverary.book.springboot.web.domain.book;
+package com.liverary.book.springboot.web;
 
 import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.domain.book.BookRepository;
@@ -38,10 +38,9 @@ public class BookRepositoryTest {
         String bookCover = "cover2";
         String bookIntro = "bookIntro2";
         int totalPage = 4;
-        Date registeredDate = Date.valueOf("2020-01-03");
         Date publishedDate = Date.valueOf("2020-01-30");
 
-        bookRepository.save(Book.builder().title(title).author(author).publisher(publisher).country(country).bookIntro(bookIntro).bookCover(bookCover).bookContent(bookContent).registeredDate(registeredDate).publishedDate(publishedDate).build());
+        bookRepository.save(Book.builder().title(title).author(author).publisher(publisher).country(country).bookIntro(bookIntro).bookCover(bookCover).bookContent(bookContent).publishedDate(publishedDate).build());
 
 
     }
@@ -61,7 +60,7 @@ public class BookRepositoryTest {
                 "brothers were married. Ali Baba lived with his poor wife in \n" +
                 "a small house. He had to cut down trees to sell in the \n" +
                 "marketplace for money. Cassim lived in a big house \n" +
-                "because he married a rich girl. Her family had a lot of " ).publishedDate(Date.valueOf("2022-11-23")).registeredDate(Date.valueOf("2011-11-22")).build();
+                "because he married a rich girl. Her family had a lot of " ).publishedDate(Date.valueOf("2022-11-23")).build();
         bookRepository.save(book);
         User user = User.builder().email("didddmstj98@naver.com").build();
         userRepository.save(user);
