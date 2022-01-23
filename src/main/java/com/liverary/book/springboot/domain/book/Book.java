@@ -39,14 +39,11 @@ public class Book extends BaseTimeEntity {
     @Column(nullable = false)
     private int totalPage;
 
-//    @Column(nullable = false)
-//    private Date registeredDate;
-
     @Column(nullable = false)
     private Date publishedDate;
 
     @Builder
-    public Book(String title, String author, String publisher, String country, String bookIntro, String bookCover, String bookContent, int totalPage, Date registeredDate, Date publishedDate){
+    public Book(String title, String author, String publisher, String country, String bookIntro, String bookCover, String bookContent, int totalPage, Date publishedDate){
         this.title = title ;
         this.author = author;
         this.publisher = publisher;
@@ -54,7 +51,6 @@ public class Book extends BaseTimeEntity {
         this.bookIntro  = bookIntro;
         this.bookCover = bookCover;
         this.bookContent = bookContent;
-        //this.registeredDate = registeredDate;
         this.publishedDate = publishedDate;
         this.totalPage= totalPage;
     }
