@@ -18,11 +18,11 @@ public class Reading {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long readingKey;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_key")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_key")
     private Book book;
 

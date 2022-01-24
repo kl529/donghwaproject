@@ -20,7 +20,7 @@ public class User extends BaseTimeEntity {
     @Column(length = 500, nullable = false)
     private String email;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Reading> list ;
 
     @Enumerated(EnumType.STRING)
