@@ -69,8 +69,8 @@ public class ReadingApiControllerTest {
 
         //then
         List<Reading> all = readingRepository.findAll();
-        assertThat(all.get(0).getBook()).isEqualTo(test_book);
-        assertThat(all.get(0).getUser()).isEqualTo(test_user);
+        assertThat(all.get(0).getBook().getTitle()).isEqualTo(test_book.getTitle());
+        assertThat(all.get(0).getUser().getEmail()).isEqualTo(test_user.getEmail());
         assertThat(all.get(0).getCurrentPage()).isEqualTo(1);
         assertThat(all.get(0).getScore()).isEqualTo(0);
         assertThat(all.get(0).getIsWrittenBookReport()).isEqualTo(0);
