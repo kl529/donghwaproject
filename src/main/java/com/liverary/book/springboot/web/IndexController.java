@@ -42,4 +42,9 @@ public class IndexController {
     public String bookDelete(){
         return "book-delete";
     }
+
+    @GetMapping("/user/info")
+    public String myInfo(){
+        return "myinfo";
+    }
 }

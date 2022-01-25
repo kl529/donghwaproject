@@ -5,21 +5,18 @@
 <h1> 동화팅 liverary 홈페이지 </h1>
 책 검색, 내정보 페이지로 연결, 전체 책 리스트 등록 일자에 따라 표시, 내가 읽고 있는 책 리스트 표시
 
-{{! ------ 책 등록, 삭제 ------ }}
 <div class="col-md-12">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
+            <a href="/user/info" role="button" class="btn btn-primary">내 정보</a>
+        </div>
+        <div class="col-md-3">
             <a href="/book/save" role="button" class="btn btn-primary">책 등록</a>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
             <a href="/book/delete" role="button" class="btn btn-primary">책 삭제</a>
         </div>
     </div>
 </div>
-{{! ------ 책 등록, 삭제 ------ }}
-
-
 
 {{>layout/footer}}
