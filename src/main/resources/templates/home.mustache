@@ -7,16 +7,31 @@
 
 <div class="col-md-12">
     <div class="row">
-        <div class="col-md-3">
+        <div id="searchbar">
+            <form action="/search" method="get" id="search-form">
+                <div id="searchbar-fauxtext">
+                    <input type="text" name="q" id="search-query" value="검색어를 입력해주세요" autocomplete="off">
+                    <a href="#" id="search-submit" title="Search this wiki">
+                        <span>검색</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div>
+            {{#userName}}
+                <span id="user">{{userName}}</span>님 안녕하세요
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/userName}}
             <a href="/user/info" role="button" class="btn btn-primary">내 정보</a>
         </div>
-        <div class="col-md-3">
-            <a href="/book/save" role="button" class="btn btn-primary">책 등록</a>
-        </div>
-        <div class="col-md-3">
-            <a href="/book/delete" role="button" class="btn btn-primary">책 삭제</a>
-        </div>
+    </div>
+    <div class="row">
+        <a href="/book/save" role="button" class="btn btn-primary">책 등록</a>
+        <a href="/book/delete" role="button" class="btn btn-primary">책 삭제</a>
     </div>
 </div>
+
+
 
 {{>layout/footer}}
