@@ -62,6 +62,11 @@ https://www.figma.com/file/1mX0J3iX3y7ePxbevfGsm0/Untitled
                 - 편집버튼 없이 저장하면 변경사항 저장
             - 녹음 버튼
                 - 녹음표시 팝업창 
+     - **관리자용 페이지**
+        - 책 등록
+        - 책 삭제
+
+
 # DB Schema
 - DB
     - **책 book**
