@@ -1,11 +1,14 @@
 package com.liverary.book.springboot.web;
 
 import com.liverary.book.springboot.config.auth.dto.SessionUser;
+import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.service.BookService;
+import com.liverary.book.springboot.web.dto.book.BookResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 
@@ -47,4 +50,5 @@ public class IndexController {
     public String myInfo(){
         return "myinfo";
     }
+
 }
