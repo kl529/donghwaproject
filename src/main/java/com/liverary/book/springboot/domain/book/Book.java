@@ -44,7 +44,7 @@ public class Book extends BaseTimeEntity {
     @Column(nullable = false)
     private Date publishedDate;
 
-    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "book", targetEntity = Reading.class, cascade = CascadeType.REMOVE)
     private List<Reading> list ;
 
     @Builder
