@@ -10,8 +10,8 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
-//@Table(name = "reading", uniqueConstraints = {@UniqueConstraint(
-//        name = "KEYS_UNIQUE", columnNames = {"book_id", "user_id"})})
+@Table(name = "reading", uniqueConstraints = {@UniqueConstraint(
+        name = "KEYS_UNIQUE", columnNames = {"bookkey", "userkey"})})
 @Entity(name = "reading")
 public class Reading {
 
