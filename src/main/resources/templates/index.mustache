@@ -2,9 +2,13 @@
 <div class = "col-md-12">
     <div class = "row">
         <div class = "col-md-6">
-            <a href = "/posts/save" role = "button" class = "btn btn-primary"> 책 등록</a>
+            <a href = "/books/save" role = "button" class = "btn btn-primary"> 책 등록</a>
         </div>
     </div>
+</div>
+<div>
+    <input type = "text" placeholder="검색어 입력">
+    <button> 검색</button>
 </div>
 <br>
 <!--목록 출력 영역-->
@@ -13,6 +17,7 @@
     <thead class = "thead-strong">
     <tr>
         <th> 책이름 </th>
+        <th> 책 이미지 </th>
         <th> 저자명 </th>
         <th> 출판사 </th>
     </tr>
@@ -21,8 +26,10 @@
     {{#books}}
         <tr>
             <td>{{title}}</td>
+            <td><a href = "/api/v1/books/info/{{bookKey}}">{{bookCover}}</a>
             <td>{{author}}</td>
             <td>{{publisher}}</td>
+
         </tr>
     {{/books}}
     </tbody>

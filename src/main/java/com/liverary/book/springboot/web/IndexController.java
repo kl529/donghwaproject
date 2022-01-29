@@ -21,8 +21,13 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model){
         model.addAttribute("books",bookService.findAllDesc());
-        return "welcome";
+        return "index";
     }
+    @GetMapping("/books/save")
+        public String booksSave(){
+            return "book-save";
+        }
+
     @GetMapping("/books/update/{id}")
     public String bookUpdate(@PathVariable Long id, Model model ){
         BookResponseDto bookResponseDto = bookService.findById(id);
@@ -33,6 +38,12 @@ public class IndexController {
     public String bookSearch(@PathVariable String search,Model model ){
         model.addAttribute("books", bookService.findBySearch(search));
         return "search";
+    }
+    @GetMapping("/api/v1/books/info/{id}")
+    public String bookDetail(@PathVariable Long id, Model model ){
+        BookResponseDto bookResponseDto = bookService.findById(id);
+        model.addAttribute("book", bookResponseDto);
+        return "book-detail";
     }
 }
 

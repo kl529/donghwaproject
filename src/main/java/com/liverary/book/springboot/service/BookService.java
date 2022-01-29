@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-@Service("BookService")
+@Service
 public class BookService {
     private final BookRepository bookRepository;
     // 책 저장

@@ -4,6 +4,7 @@
     <thead class = "thead-strong">
     <tr>
         <th> 책이름 </th>
+        <th> 책 이미지 </th>
         <th> 저자명 </th>
         <th> 출판사 </th>
     </tr>
@@ -12,8 +13,10 @@
     {{#books}}
         <tr>
             <td>{{title}}</td>
+            <td><a href = "/api/v1/books/info/{{bookKey}}">{{bookCover}}</a>
             <td>{{author}}</td>
             <td>{{publisher}}</td>
+
         </tr>
     {{/books}}
     </tbody>

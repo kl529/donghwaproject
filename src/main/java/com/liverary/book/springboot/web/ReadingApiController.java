@@ -59,7 +59,6 @@ public class ReadingApiController {
     public List<ReadingListResponseDto> findAll(@PathVariable Long id, int option) {
         return readingService.findAllDesc(id, option);
     }
-
     @GetMapping("/api/v1/reading/record") // -> id에 따라 모든 인자값 받아오는 API
     public void testing() throws Exception {
 //        TTSService.synthesizeText("hello world");
