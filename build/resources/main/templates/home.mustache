@@ -40,9 +40,14 @@
         내가 읽고 있는 책
     </div>
     <div class="row">
-        <div class="col-md-3">
-            책 정보가 위치할 곳
-        </div>
+        {{#books}}
+            <div class="col-md-3">
+                <row>{{bookCover}}</row>
+                <row>{{title}}</row>
+                <row>{{author}}</row>
+                <row>{{publisher}}</row>
+            </div>
+        {{/books}}
         <div class="col-md-3">
             책 정보가 위치할 곳
         </div>

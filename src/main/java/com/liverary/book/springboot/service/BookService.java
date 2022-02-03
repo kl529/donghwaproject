@@ -2,7 +2,6 @@ package com.liverary.book.springboot.service;
 
 import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.domain.book.BookRepository;
-import com.liverary.book.springboot.web.dto.BookListResponseDto;
 import com.liverary.book.springboot.web.dto.book.BookIntroDto;
 import com.liverary.book.springboot.web.dto.book.BookResponseDto;
 import com.liverary.book.springboot.web.dto.book.BookSaveRequestDto;

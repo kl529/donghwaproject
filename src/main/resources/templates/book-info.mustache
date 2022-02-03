@@ -1,0 +1,25 @@
+{{>layout/header}}
+<h1>책 소개 페이지</h1>
+{{#book}}
+    <div class = "col-md-12">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-md-6">
+                        {{bookCover}}
+                    </td>
+                    <td>
+                        <row>제목: {{title}}</row>
+                        <row>저자: {{author}}</row>
+                        <row>출판사: {{publisher}}</row>
+                        <row>책 소개: {{bookIntro}}</row>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{{/book}}
+{{^book}}
+    해당 책이 존재 하지 않습니다.
+{{/book}}
+{{>layout/footer}}

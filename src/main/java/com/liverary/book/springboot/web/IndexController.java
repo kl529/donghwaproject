@@ -33,6 +33,8 @@ public class IndexController {
         if(user != null){
             model.addAttribute("userName", user.getEmail());
         }
+
+        // model.addAttribute("books",bookService.findAllDesc());
         return "home";
     }
 
@@ -44,6 +46,14 @@ public class IndexController {
     @GetMapping("/book/delete")
     public String bookDelete(){
         return "book-delete";
+    }
+
+    @GetMapping("/book/info/{bookKey}")
+    public String bookInfo(@PathVariable Long bookKey, Model model){
+        BookResponseDto dto = bookService.findById(bookKey);
+        model.addAttribute("book",dto);
+
+        return "book-info";
     }
 
     @GetMapping("/user/info")
