@@ -111,10 +111,4 @@ public class ReadingService {
 //                .map(readingListResponseDto::new)
 //                .collect(Collectors.toList());
     }
-    @Transactional(readOnly = true)
-    public ReadingResponseDto synthesize(Long id) { //
-
-        return new ReadingResponseDto(entity);
-    }
-
 }
