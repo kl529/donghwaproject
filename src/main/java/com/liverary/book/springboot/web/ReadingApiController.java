@@ -3,6 +3,10 @@ package com.liverary.book.springboot.web;
 import  com.liverary.book.springboot.service.*;
 import com.liverary.book.springboot.web.dto.reading.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.*;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpServletResponse;
+import java.nio.charset.Charset;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -60,11 +69,50 @@ public class ReadingApiController {
         return readingService.findAllDesc(id, option);
     }
 
-//    @GetMapping("/api/v1/reading/record") // -> id에 따라 모든 인자값 받아오는 API
-//    public void testing() throws Exception {
-////        TTSService.synthesizeText("hello world");
-////        TTSService.mainob();
-//    }
+    @PostMapping("/api/v1/reading/tts") // -> id에 따라 모든 인자값 받아오는 API
+    public String synthesize (HttpServletResponse request, MultipartFile speak) throws Exception {
+            System.out.println(speak);
+            String myPath = request.getRealPath("/adminImg")+"/speak.wav";
+            FileUtilCollection.saveImage(speak, myPath);
+
+            String path = request.getRealPath("/adminImg")+"/heykakao.wav";
+//		FileUtilCollection.saveImage(speak, path);
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.getMessageConverters()
+                    .add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
+
+            //add file
+            LinkedMultiValueMap<String, Object> params = new LinkedMultiValueMap<String, Object>();
+            params.add("file", new FileSystemResource(path));
+
+            //add array
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("https://kakaoi-newtone-openapi.kakao.com/v1/recognize");
+            //another staff
+            String result = "";
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+            headers.set("Content-Type", "application/xml");
+            headers.set("Transfer-Encoding", "chunked");
+            headers.set("X-DSS-Service", "DICTATION");
+            headers.set("Authorization", "KakaoAK "+kakako_code);
+
+            HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity =
+                    new HttpEntity<LinkedMultiValueMap<String, Object>>(params, headers);
+
+            ResponseEntity<String> responseEntity = restTemplate.exchange(
+                    builder.build().encode().toUri(),
+                    HttpMethod.POST,
+                    requestEntity,
+                    String.class
+            );
+            HttpStatus statusCode = responseEntity.getStatusCode();
+
+            result = responseEntity.getBody();
+            System.out.println(result);
+            return result;
+
+    }
 //    @PutMapping("/api/v1/reading/record/{id}")
 //    public Long record(@PathVariable Long id, @RequestBody ReadingUpdateRequestDto requestDto) { // 녹음해서 넣는건데.. 아직 안됨
 //        return readingService.update(id, requestDto);
