@@ -26,8 +26,6 @@ public class IndexController {
     private final BookService bookService;
 
 
-
-
     @GetMapping("/books/update/{id}")
     public String bookUpdate(@PathVariable Long id, Model model ){
         BookResponseDto bookResponseDto = bookService.findById(id);

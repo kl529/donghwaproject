@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Table(name = "reading", uniqueConstraints = {@UniqueConstraint(
-        name = "KEYS_UNIQUE", columnNames = {"bookkey", "userkey"})})
+        name = "KEYS_UNIQUE", columnNames = {"book_key", "user_key"})})
 @Entity(name = "reading")
 public class Reading {
 
@@ -20,11 +20,11 @@ public class Reading {
     private Long readingKey;
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "userkey")
+    @JoinColumn(name = "user_key")
     private User user;
 
     @ManyToOne(targetEntity = Book.class, fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "bookkey")
+    @JoinColumn(name = "book_key")
     private Book book;
 
     @Column(nullable = false)
