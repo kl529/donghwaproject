@@ -58,7 +58,7 @@ public class IndexController {
             model.addAttribute("userName", user.getEmail());
         }
 
-        // model.addAttribute("books",bookService.findAllDesc());
+         model.addAttribute("books",bookService.findAllDesc());
         return "home";
     }
 

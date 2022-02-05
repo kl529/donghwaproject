@@ -19,11 +19,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-<<<<<<< HEAD
+
                 .antMatchers("/","/css/**","/images/**","/js/**", "h2-console/**").permitAll()
-=======
-//                .antMatchers("/","/css/**","/images/**","/js/**", "h2-console/**").permitAll()
->>>>>>> origin/yes
+
 //                .antMatchers("/admin/**").hasRole(Role.ADMIN.name())    // 책 등록 및 삭제를 위한 주소는 /admin/**로 만들자
 //                .anyRequest().authenticated()   // 이외 페이지는 로그인 사용자만 허용
                 .anyRequest().permitAll()

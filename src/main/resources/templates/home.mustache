@@ -38,14 +38,14 @@
         내가 읽고 있는 책
     </div>
     <div class="row">
-        {{#books}}
+        {{#myBooks}}
             <div class="col-md-3">
                 <row>{{bookCover}}</row>
                 <row>{{title}}</row>
                 <row>{{author}}</row>
                 <row>{{publisher}}</row>
             </div>
-        {{/books}}
+        {{/myBooks}}
         <div class="col-md-3">
             책 정보가 위치할 곳
         </div>
@@ -73,7 +73,7 @@
     {{#books}}
         <tr>
             <td>{{title}}</td>
-            <td><a href = "/api/v1/books/info/{{bookKey}}">{{bookCover}}</a>
+            <td><a href = "/book/info/{{bookKey}}">{{bookCover}}</a>
             <td>{{author}}</td>
             <td>{{publisher}}</td>
 
