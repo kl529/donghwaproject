@@ -1,0 +1,23 @@
+{{>layout/header}}
+<div class = "col-md-12">
+    <div class = "row">
+        <div class = "col-md-6">
+            <a href = "/" role = "button" class = "btn btn-primary"> 이어보기 </a>
+            <a href = "/" role = "button" class = "btn btn-primary"> 처음부터보기  </a>
+        </div>
+    </div>
+</div>
+<!--책 표지 이미지 , 저자, 출판사, 책에 대한 설명 독후감 쓰러가기-->
+{{#book}}
+    {{bookCover}}
+    <tr>
+        <td>{{title}}</td>
+        <td>{{author}}</td>
+        <td>{{publisher}}</td>
+        <td>{{bookIntro}}</td>
+
+    </tr>
+{{/book}}
+<a href = "/" role = "button" class = "btn btn-primary"> 독후감 쓰러가기  </a>
+
+{{>layout/footer}}

@@ -6,15 +6,17 @@ import lombok.Getter;
 // 최신 책 가져올 것
 @Getter
 public class BookIntroDto {
+    private Long bookKey;
     private String title;
     private String bookCover;
     private String author;
-    private String publsher;
+    private String publisher;
 
     public BookIntroDto (Book entity){
+        this.bookKey= entity.getBookKey();
         this.title = entity.getTitle();
         this.bookCover = entity.getBookCover();
         this.author = entity.getAuthor();
-        this.publsher = entity.getPublisher();
+        this.publisher = entity.getPublisher();
     }
 }

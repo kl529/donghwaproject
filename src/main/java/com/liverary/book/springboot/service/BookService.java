@@ -2,10 +2,11 @@ package com.liverary.book.springboot.service;
 
 import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.domain.book.BookRepository;
-import com.liverary.book.springboot.web.dto.BookListResponseDto;
 import com.liverary.book.springboot.web.dto.book.BookIntroDto;
 import com.liverary.book.springboot.web.dto.book.BookResponseDto;
 import com.liverary.book.springboot.web.dto.book.BookSaveRequestDto;
+import com.liverary.book.springboot.web.dto.book.BookUpdateRequestDto;
+import com.liverary.book.springboot.web.dto.book.BookUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-@Service("BookService")
+@Service
 public class BookService {
     private final BookRepository bookRepository;
     // 책 저장
@@ -32,7 +33,7 @@ public class BookService {
     @Transactional(readOnly = true)
     public List<BookIntroDto> findAllDesc(){
         return bookRepository.findAll(
-                Sort.by(Sort.Direction.DESC,"createDate"))
+                Sort.by(Sort.Direction.DESC,"createdDate"))
                 .stream()
                 .map(BookIntroDto::new)
                 .collect(Collectors.toList());
@@ -42,6 +43,12 @@ public class BookService {
     @Transactional(readOnly = true)
     public List <BookIntroDto> findBySearch(String str ){
         return bookRepository.findBySearch(str).stream().map(BookIntroDto::new).collect(Collectors.toList());
+    }
+    @Transactional
+    public Long update(Long id, BookUpdateRequestDto requestDto){
+        Book book = bookRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+        book.update(requestDto.getBookIntro(), requestDto.getBookContent(), requestDto.getBookCover() );
+        return id;
     }
 
     //

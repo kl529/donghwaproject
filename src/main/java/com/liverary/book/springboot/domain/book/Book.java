@@ -12,7 +12,7 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Entity
+@Entity(name = "book")
 public class Book extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,5 +58,10 @@ public class Book extends BaseTimeEntity {
         this.bookContent = bookContent;
         this.publishedDate = publishedDate;
         this.totalPage= totalPage;
+    }
+    public void update (String bookIntro, String bookContent, String bookCover){
+        this.bookIntro = bookIntro;
+        this.bookContent = bookContent;
+        this.bookCover = bookCover;
     }
 }

@@ -23,16 +23,13 @@ public class BookRepositoryTest {
     @Autowired
     BookRepository bookRepository;
 
-    @After
-    public void cleanup(){
-        bookRepository.deleteAll();
-    }
+
 
     @Test
     public void 저장된책_불러오기(){
         //given
         String title = "책제목";
-        String author = "저자";
+        String author = "저자3";
         String publisher = "출판사";
         String bookIntro = "책 소개";
         String bookCover = "책 표지";
@@ -62,7 +59,6 @@ public class BookRepositoryTest {
         assertThat(book.getTitle()).isEqualTo(title);
         assertThat(book.getTotalPage()).isEqualTo(totalPage);
         //이하 생략
-        assertThat(book.getPublishedDate()).isEqualTo(publishedDate);
 
     }
 

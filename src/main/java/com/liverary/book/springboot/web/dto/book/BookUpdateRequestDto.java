@@ -1,15 +1,20 @@
 package com.liverary.book.springboot.web.dto.book;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
 public class BookUpdateRequestDto {
-    // 입력시 오타가 나는 가능성을 고려??
-    private String title;
-    private String author;
-    private String publisher;
-    private String country;
+    private  String bookIntro;
+    private String bookCover;
+    private String bookContent;
 
+    @Builder
+    public BookUpdateRequestDto(String bookIntro, String bookCover, String bookContent){
+        this.bookContent = bookContent;
+        this.bookCover = bookCover;
+        this.bookIntro = bookIntro;
+    }
 }
