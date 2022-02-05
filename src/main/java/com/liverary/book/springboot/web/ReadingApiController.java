@@ -72,7 +72,6 @@ public class ReadingApiController {
     public List<ReadingListResponseDto> findAll(@PathVariable Long id, int option) {
         return readingService.findAllDesc(id, option);
     }
-<<<<<<< HEAD
 
     @PostMapping("/api/v1/reading/tts") // -> id에 따라 모든 인자값 받아오는 API
     public String synthesize (String input_text) throws Exception {
@@ -101,16 +100,6 @@ public class ReadingApiController {
             result = responseEntity.getBody();
             System.out.println(result);
             return result;
-=======
-    @GetMapping("/api/v1/reading/record") // -> id에 따라 모든 인자값 받아오는 API
-    public void testing() throws Exception {
-//        TTSService.synthesizeText("hello world");
-//        TTSService.mainob();
-    }
-    @PutMapping("/api/v1/reading/record/{id}")
-    public Long record(@PathVariable Long id, @RequestBody ReadingUpdateRequestDto requestDto) { // 녹음해서 넣는건데.. 아직 안됨
-        return readingService.update(id, requestDto);
->>>>>>> origin/yes
     }
 //    @PutMapping("/api/v1/reading/record/{id}")
 //    public Long record(@PathVariable Long id, @RequestBody ReadingUpdateRequestDto requestDto) { // 녹음해서 넣는건데.. 아직 안됨
