@@ -2,4 +2,4 @@
 .idea
 application-google.properties
 application-oauth.properties
-
+application-kakao.properties

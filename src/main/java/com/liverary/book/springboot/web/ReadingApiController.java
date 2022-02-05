@@ -3,19 +3,32 @@ package com.liverary.book.springboot.web;
 import  com.liverary.book.springboot.service.*;
 import com.liverary.book.springboot.web.dto.reading.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.*;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
+@Configuration
 public class ReadingApiController {
+
+//    @Value("#application-kako['kakako_code']")
+//    @Value("${kakako_code}")
+    private String api_kakao = "7bd3af3fe5fadac891ef28bc5e0a64aa";
 
     private final ReadingService readingService;
 
@@ -60,13 +73,36 @@ public class ReadingApiController {
         return readingService.findAllDesc(id, option);
     }
 
-    @GetMapping("/api/v1/reading/record") // -> id에 따라 모든 인자값 받아오는 API
-    public void testing() throws Exception {
-//        TTSService.synthesizeText("hello world");
-//        TTSService.mainob();
+    @PostMapping("/api/v1/reading/tts") // -> id에 따라 모든 인자값 받아오는 API
+    public String synthesize (String input_text) throws Exception {
+            RestTemplate restTemplate = new RestTemplate();
+
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("https://kakaoi-newtone-openapi.kakao.com/v1/synthesize");
+            String result = "";
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_XML);
+
+            headers.set("Transfer-Encoding", "chunked");
+            headers.set("X-DSS-Service", "DICTATION");
+            headers.set("Authorization", "KakaoAK "+api_kakao);
+
+            String body = "<speak>hello my name is jiwon </speak>"; //xml로 바꾸기 //String 값 받아오기
+            HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
+
+            ResponseEntity<String> responseEntity = restTemplate.exchange(
+                    builder.build().encode().toUri(),
+                    HttpMethod.POST,
+                    requestEntity,
+                    String.class
+            );
+            HttpStatus statusCode = responseEntity.getStatusCode();
+
+            result = responseEntity.getBody();
+            System.out.println(result);
+            return result;
     }
-    @PutMapping("/api/v1/reading/record/{id}")
-    public Long record(@PathVariable Long id, @RequestBody ReadingUpdateRequestDto requestDto) { // 녹음해서 넣는건데.. 아직 안됨
-        return readingService.update(id, requestDto);
-    }
+//    @PutMapping("/api/v1/reading/record/{id}")
+//    public Long record(@PathVariable Long id, @RequestBody ReadingUpdateRequestDto requestDto) { // 녹음해서 넣는건데.. 아직 안됨
+//        return readingService.update(id, requestDto);
+//    }
 }
