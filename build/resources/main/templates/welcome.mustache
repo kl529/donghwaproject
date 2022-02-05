@@ -8,10 +8,17 @@
     <!-- 로그인 기능 영역 -->
     <div class="row">
         <div class="col-md-6">
-            <a href="/oauth2/authorization/google"
-               class="btn btn-success active"
-               role="button"> Google Login </a>
+            {{#userName}}
+                <span id="user">{{userName}}</span>님 안녕하세요
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/userName}}
+            {{^userName}}
+                <a href="/oauth2/authorization/google"
+                   class="btn btn-success active"
+                   role="button"> Google Login </a>
+            {{/userName}}
         </div>
     </div>
+    <!-- 로그인 기능 영역 -->
 </div>
 {{>layout/footer}}

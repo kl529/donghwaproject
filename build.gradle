@@ -33,6 +33,7 @@ dependencies {
     implementation platform('com.google.cloud:libraries-bom:24.2.0')
     implementation 'com.google.cloud:google-cloud-speech'
     implementation 'com.google.cloud:google-cloud-texttospeech'
+    implementation 'org.jetbrains:annotations:20.1.0'
 
     compileOnly 'org.projectlombok:lombok:1.18.10'
     annotationProcessor 'org.projectlombok:lombok:1.18.10'
