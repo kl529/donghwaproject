@@ -29,7 +29,7 @@
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">1</div>
+<div class="counter">0</div>
 <p>failures</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.105s</div>
+<div class="counter">0.169s</div>
 <p>duration</p>
 </div>
 </td>
@@ -50,8 +50,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox failures" id="successRate">
-<div class="percent">50%</div>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
 <p>successful</p>
 </div>
 </td>
@@ -61,87 +61,13 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Failed tests</a>
+<a href="#tab0">Tests</a>
 </li>
 <li>
-<a href="#tab1">Tests</a>
-</li>
-<li>
-<a href="#tab2">Standard output</a>
+<a href="#tab1">Standard output</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
-<h2>Failed tests</h2>
-<div class="test">
-<a name="저장된책_불러오기"></a>
-<h3 class="failures">저장된책_불러오기</h3>
-<span class="code">
-<pre>org.junit.ComparisonFailure: expected:&lt;&quot;[책제목]&quot;&gt; but was:&lt;&quot;[title]&quot;&gt;
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
-	at com.liverary.book.springboot.domain.BookRepositoryTest.저장된책_불러오기(BookRepositoryTest.java:59)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestExecutionCallbacks.evaluate(RunBeforeTestExecutionCallbacks.java:74)
-	at org.springframework.test.context.junit4.statements.RunAfterTestExecutionCallbacks.evaluate(RunAfterTestExecutionCallbacks.java:84)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
-	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
-	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:251)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:110)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
-	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:62)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
-	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:118)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:182)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:164)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:412)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
-	at java.base/java.lang.Thread.run(Thread.java:832)
-</pre>
-</span>
-</div>
-</div>
-<div id="tab1" class="tab">
 <h2>Tests</h2>
 <table>
 <thead>
@@ -153,30 +79,57 @@
 </thead>
 <tr>
 <td class="success">BaseTimeEntity_등록</td>
-<td class="success">0.051s</td>
+<td class="success">0.031s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="failures">저장된책_불러오기</td>
-<td class="failures">0.054s</td>
-<td class="failures">failed</td>
+<td class="success">저장된책_불러오기</td>
+<td class="success">0.138s</td>
+<td class="success">passed</td>
 </tr>
 </table>
 </div>
-<div id="tab2" class="tab">
+<div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2022-02-08 18:04:57.118  INFO 34880 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.liverary.book.springboot.domain.BookRepositoryTest], using SpringBootContextLoader
-2022-02-08 18:04:57.121  INFO 34880 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.liverary.book.springboot.domain.BookRepositoryTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2022-02-08 18:04:57.122  INFO 34880 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.liverary.book.springboot.domain.BookRepositoryTest]: BookRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2022-02-08 18:04:57.142  INFO 34880 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.liverary.book.springboot.Application for test class com.liverary.book.springboot.domain.BookRepositoryTest
-2022-02-08 18:04:57.155  INFO 34880 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-2022-02-08 18:04:57.157  INFO 34880 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@11acd119, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@239b10bd, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6bd472ad, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@791ddd24, org.springframework.test.context.support.DirtiesContextTestExecutionListener@eceef07, org.springframework.test.context.transaction.TransactionalTestExecutionListener@75ab189b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3d225d99, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@2a4153e4, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@530e277c, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7ecc8246, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@512dc693, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@71537121]
+<pre>2022-02-08 18:31:06.333  INFO 13436 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.liverary.book.springboot.domain.BookRepositoryTest], using SpringBootContextLoader
+2022-02-08 18:31:06.335  INFO 13436 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.liverary.book.springboot.domain.BookRepositoryTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-02-08 18:31:06.335  INFO 13436 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.liverary.book.springboot.domain.BookRepositoryTest]: BookRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-02-08 18:31:06.350  INFO 13436 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.liverary.book.springboot.Application for test class com.liverary.book.springboot.domain.BookRepositoryTest
+2022-02-08 18:31:06.356  INFO 13436 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2022-02-08 18:31:06.357  INFO 13436 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@432e758a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4d060fcc, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3c3edae8, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@2a5b101a, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1a69b2fe, org.springframework.test.context.transaction.TransactionalTestExecutionListener@67ecb610, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2dcfc99f, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@5fe6c7fc, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@8cf70bc, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@a910b83, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@59c1a87f, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@30715d9c]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.9.RELEASE)
+
+2022-02-08 18:31:06.484  INFO 13436 --- [    Test worker] c.l.b.s.domain.BookRepositoryTest        : Starting BookRepositoryTest on LyvA with PID 13436 (started by jieon in C:\Users\jieon\Desktop\dong)
+2022-02-08 18:31:06.484  INFO 13436 --- [    Test worker] c.l.b.s.domain.BookRepositoryTest        : The following profiles are active: google
+2022-02-08 18:31:07.121  INFO 13436 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-02-08 18:31:07.208  INFO 13436 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 87ms. Found 3 repository interfaces.
+2022-02-08 18:31:07.487  INFO 13436 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$112c0927] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-08 18:31:07.743  INFO 13436 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2022-02-08 18:31:07.777  INFO 13436 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2022-02-08 18:31:07.787  INFO 13436 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2022-02-08 18:31:07.788  INFO 13436 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2022-02-08 18:31:07.906  INFO 13436 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-02-08 18:31:08.403  INFO 13436 --- [    Test worker] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2022-02-08 18:31:08.950  INFO 13436 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7517f8c8, org.springframework.security.web.context.SecurityContextPersistenceFilter@4ee3e9e3, org.springframework.security.web.header.HeaderWriterFilter@774e76bf, org.springframework.security.web.authentication.logout.LogoutFilter@1b0c1ec4, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@f0615ea, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@4d6df857, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4af14a88, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@7c912382, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6d8236bd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@697d5e3c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4307c0bf, org.springframework.security.web.session.SessionManagementFilter@755acebd, org.springframework.security.web.access.ExceptionTranslationFilter@16e6a496, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7fdeda22]
+2022-02-08 18:31:09.767  INFO 13436 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-02-08 18:31:09.800  WARN 13436 --- [    Test worker] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-02-08 18:31:10.824  INFO 13436 --- [    Test worker] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2022-02-08 18:31:10.827  INFO 13436 --- [    Test worker] c.l.b.s.domain.BookRepositoryTest        : Started BookRepositoryTest in 4.459 seconds (JVM running for 27.123)
 Hibernate: insert into book (created_date, modified_date, author, book_content, book_cover, book_intro, country, published_date, publisher, title, total_page) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 Hibernate: select book0_.book_key as book_key1_0_, book0_.created_date as created_2_0_, book0_.modified_date as modified3_0_, book0_.author as author4_0_, book0_.book_content as book_con5_0_, book0_.book_cover as book_cov6_0_, book0_.book_intro as book_int7_0_, book0_.country as country8_0_, book0_.published_date as publishe9_0_, book0_.publisher as publish10_0_, book0_.title as title11_0_, book0_.total_page as total_p12_0_ from book book0_
 Hibernate: insert into book (created_date, modified_date, author, book_content, book_cover, book_intro, country, published_date, publisher, title, total_page) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 Hibernate: select book0_.book_key as book_key1_0_, book0_.created_date as created_2_0_, book0_.modified_date as modified3_0_, book0_.author as author4_0_, book0_.book_content as book_con5_0_, book0_.book_cover as book_cov6_0_, book0_.book_intro as book_int7_0_, book0_.country as country8_0_, book0_.published_date as publishe9_0_, book0_.publisher as publish10_0_, book0_.title as title11_0_, book0_.total_page as total_p12_0_ from book book0_
-&gt;&gt;&gt;&gt;&gt; createDate=2022-02-08T17:50
+&gt;&gt;&gt;&gt;&gt; createDate=2022-02-08T18:30:18
 </pre>
 </span>
 </div>
@@ -188,7 +141,7 @@ Hibernate: select book0_.book_key as book_key1_0_, book0_.created_date as create
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at 2022. 2. 8. 오후 6:05:11</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at 2022. 2. 8. 오후 6:31:11</p>
 </div>
 </div>
 </body>

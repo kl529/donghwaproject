@@ -77,40 +77,40 @@ public class BookApiControllerTest {
 
         //이하 생략
     }
-    @Test
-    public void UpdateBook_test() throws Exception {
-        Book savedBook = bookRepository.save(Book.builder()
-                .title("title")
-                .author("author")
-                .publisher("publisher")
-                .bookIntro("bookIntro")
-                .bookCover("bookCover")
-                .country("country")
-                .bookContent("bookContent")
-                .totalPage(10)
-                //.registeredDate(registeredDate)
-                .publishedDate(Date.valueOf("2021-01-11")).build());
-        Long updateId = savedBook.getBookKey();
-        String expectedbookIntro = "bookIntro2";
-        String expectedbookContent = "bookContent2";
-
-        BookUpdateRequestDto bookUpdateRequestDto= BookUpdateRequestDto.builder().bookContent(expectedbookContent).bookIntro(expectedbookIntro).bookCover("bookCover").build();
-
-        String url = "http://localhost:" + port + "/api/v1/books/" + updateId;
-
-
-        HttpEntity<BookUpdateRequestDto> requestDtoHttpEntity = new HttpEntity<>(bookUpdateRequestDto);
-
-
-        ResponseEntity<Long> responseEntity  = restTemplate.exchange(url, HttpMethod.PUT, requestDtoHttpEntity, Long.class);
-
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-
-        List < Book>  all = bookRepository.findAll();
-
-        assertThat(all.get(0).getBookContent()).isEqualTo(expectedbookContent);
-
-    }
+//    @Test
+//    public void UpdateBook_test() throws Exception {
+//        Book savedBook = bookRepository.save(Book.builder()
+//                .title("title")
+//                .author("author")
+//                .publisher("publisher")
+//                .bookIntro("bookIntro")
+//                .bookCover("bookCover")
+//                .country("country")
+//                .bookContent("bookContent")
+//                .totalPage(10)
+//                //.registeredDate(registeredDate)
+//                .publishedDate(Date.valueOf("2021-01-11")).build());
+//        Long updateId = savedBook.getBookKey();
+//        String expectedbookIntro = "bookIntro2";
+//        String expectedbookContent = "bookContent2";
+//
+//        BookUpdateRequestDto bookUpdateRequestDto= BookUpdateRequestDto.builder().bookContent(expectedbookContent).bookIntro(expectedbookIntro).bookCover("bookCover").build();
+//
+//        String url = "http://localhost:" + port + "/api/v1/books/" + updateId;
+//
+//
+//        HttpEntity<BookUpdateRequestDto> requestDtoHttpEntity = new HttpEntity<>(bookUpdateRequestDto);
+//
+//
+//        ResponseEntity<Long> responseEntity  = restTemplate.exchange(url, HttpMethod.PUT, requestDtoHttpEntity, Long.class);
+//
+//        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+//
+//        List < Book>  all = bookRepository.findAll();
+//
+//        assertThat(all.get(0).getBookContent()).isEqualTo(expectedbookContent);
+//
+//    }
 
 
 //    @Test
