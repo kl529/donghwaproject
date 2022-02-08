@@ -3,13 +3,9 @@ package com.liverary.book.springboot.web;
 import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.domain.book.BookRepository;
 import com.liverary.book.springboot.web.dto.book.BookSaveRequestDto;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 import com.liverary.book.springboot.web.dto.book.BookUpdateRequestDto;
->>>>>>> origin/yes
-=======
->>>>>>> origin/ykm
+
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -81,7 +77,6 @@ public class BookApiControllerTest {
 
         //이하 생략
     }
-<<<<<<< HEAD
     @Test
     public void UpdateBook_test() throws Exception {
         Book savedBook = bookRepository.save(Book.builder()
@@ -118,46 +113,42 @@ public class BookApiControllerTest {
     }
 
 
+//    @Test
+//    public void book_삭제된다() throws Exception {
+//
+//        // 삭제할 책 등록
+//        String title = "책제목";
+//        String author = "저자";
+//        String publisher = "출판사";
+//        String bookIntro = "책 소개";
+//        String bookCover = "책 표지";
+//        String bookContent = "책 내용";
+//        int totalPage = 100;
+//        Date publishedDate = Date.valueOf("2021-01-11");
+//
+//        BookSaveRequestDto requestDto = BookSaveRequestDto.builder()
+//                .title(title)
+//                .author(author)
+//                .publisher(publisher)
+//                .bookIntro(bookIntro)
+//                .bookCover(bookCover)
+//                .bookContent(bookContent)
+//                .totalPage(totalPage)
+//                .publishedDate(publishedDate)
+//                .build();
+//
+//        String url = "http://localhost:" + port + "/api/v1/books";
+//        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
+//
+//
+//        // 삭제할 책 등록 완료
+//
+//        url = "http://localhost:" + port + "/api/v1/books/{id}";
+//
+//        //when
+//        Map<String, String> params = new HashMap<String, String>();
+//        params.put("id", "0");
+//        restTemplate.delete(url, params);
+//    }
 
-=======
-
-    @Test
-    public void book_삭제된다() throws Exception {
-
-        // 삭제할 책 등록
-        String title = "책제목";
-        String author = "저자";
-        String publisher = "출판사";
-        String bookIntro = "책 소개";
-        String bookCover = "책 표지";
-        String bookContent = "책 내용";
-        int totalPage = 100;
-        Date publishedDate = Date.valueOf("2021-01-11");
-
-        BookSaveRequestDto requestDto = BookSaveRequestDto.builder()
-                .title(title)
-                .author(author)
-                .publisher(publisher)
-                .bookIntro(bookIntro)
-                .bookCover(bookCover)
-                .bookContent(bookContent)
-                .totalPage(totalPage)
-                .publishedDate(publishedDate)
-                .build();
-
-        String url = "http://localhost:" + port + "/api/v1/books";
-        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
-
-
-        // 삭제할 책 등록 완료
-
-        url = "http://localhost:" + port + "/api/v1/books/{id}";
-
-        //when
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("id", "0");
-        restTemplate.delete(url, params);
-    }
-
->>>>>>> origin/ykm
 }
