@@ -4,6 +4,7 @@ import com.liverary.book.springboot.config.auth.dto.SessionUser;
 import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.service.BookService;
 
+import com.liverary.book.springboot.service.FileService;
 import com.liverary.book.springboot.web.dto.book.BookIntroDto;
 import com.liverary.book.springboot.web.dto.book.BookResponseDto;
 import com.liverary.book.springboot.web.dto.book.BookUpdateRequestDto;
@@ -13,10 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 
 @RequiredArgsConstructor
@@ -24,6 +28,7 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final BookService bookService;
+    private final FileService fileService;
 
 
     @GetMapping("/books/update/{id}")
@@ -83,6 +88,17 @@ public class IndexController {
         return "myinfo";
     }
 
+    @GetMapping("/filetest")
+    public String fileTest()
+        {
+            return "file";
+        }
+
+    @PostMapping("/upload")
+    public String uploadFile(@RequestPart MultipartFile file ) throws IOException {
+        fileService.uploadFile(file);
+        return "redirect:/";
+    }
 
 }
 

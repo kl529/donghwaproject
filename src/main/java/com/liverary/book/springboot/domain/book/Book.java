@@ -47,8 +47,10 @@ public class Book extends BaseTimeEntity {
     @OneToMany(mappedBy = "book", targetEntity = Reading.class, cascade = CascadeType.REMOVE)
     private List<Reading> list ;
 
+    @Column
+    private Long fileId;
     @Builder
-    public Book(String title, String author, String publisher, String country, String bookIntro, String bookCover, String bookContent, int totalPage, Date publishedDate){
+    public Book(String title, String author, String publisher, String country, String bookIntro, String bookCover, String bookContent, int totalPage, Date publishedDate, Long fileId){
         this.title = title ;
         this.author = author;
         this.publisher = publisher;
@@ -58,6 +60,7 @@ public class Book extends BaseTimeEntity {
         this.bookContent = bookContent;
         this.publishedDate = publishedDate;
         this.totalPage= totalPage;
+        this.fileId = fileId;
     }
     public void update (String bookIntro, String bookContent, String bookCover){
         this.bookIntro = bookIntro;
