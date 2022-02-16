@@ -1,2 +1,21 @@
 <!--책 내용-->
 <!--이전페이지, 다음페이지 if 마지막 페이지는 독후감쓰러가기-->
+{{>layout/header}}
+<h1>책 내용 페이지</h1>
+{{#book}}
+    <div class="row">
+        <div class="col">
+            책내용 왼
+        </div>
+        <div class="col">
+            책내용 우
+        </div>
+    </div>
+    <div clas="row">
+        하단 버튼
+    </div>
+{{/book}}
+{{^book}}
+    해당 책이 존재 하지 않습니다.
+{{/book}}
+{{>layout/footer}}

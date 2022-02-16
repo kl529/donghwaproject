@@ -20,7 +20,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
-    // 구글 로그인 이후 가져온 사용자의 정보들을 기반으로 가입 및 (정보수정), 세션저장 드으이 기능을 지원
+    // 구글 로그인 이후 가져온 사용자의 정보들을 기반으로 가입 및 (정보수정), 세션저장 등의 기능을 지원
     private final UserRepository userRepository;
     private final HttpSession httpSession;
 
@@ -43,11 +43,12 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 attributes.getNameAttributeKey()); //
     }
 
-    // 구글 사용자 정보가 없데이트 되었을때를 대비한 update 기능 -> 불필요 한듯
+    // 구글 사용자 정보가 없데이트 되었을때 사용됨 ex. 새로운 사용자의 로그인
     private User saveOrUpdate(OAuthAttributes attributes){
         User user = userRepository.findByEmail(attributes.getEmail())
                 .orElse(attributes.toEntity());
 
         return userRepository.save(user);
     }
+
 }

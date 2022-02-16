@@ -39,7 +39,6 @@ var main={
     delete : function(){
         var id = $('#id').val();
 
-
         $.ajax({
             type: 'DELETE',
             url: '/api/v1/books/'+id,
