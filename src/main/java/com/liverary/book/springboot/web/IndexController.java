@@ -93,6 +93,9 @@ public class IndexController {
         BookResponseDto dto = bookService.findById(bookKey);
         model.addAttribute("book",dto);
 
+        // bookKey를 갖는 책이 reading에 들어있는지 확인 필요
+        readingService.findAllDesc(bookKey, 0);
+
         // 해당 bookKey와 userKey를 갖는 reading 생성 필요 -> startreading
         // Book과 User을 리턴할수 있는 새로운 코드를 작성한다 (V)
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
@@ -108,7 +111,12 @@ public class IndexController {
                 .isWrittenBookReport(0)
                 .bookReport("")
                 .build();
-        readingService.StartReading(requestDto);
+        Long readingKey = readingService.StartReading(requestDto);
+        
+        // 같은 책 내용 페이지에 재접속 했을때 문제 발생
+
+        // 읽는 중인 페이지관리
+
 
 
 
