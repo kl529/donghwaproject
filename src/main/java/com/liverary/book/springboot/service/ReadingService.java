@@ -111,4 +111,11 @@ public class ReadingService {
 //                .map(readingListResponseDto::new)
 //                .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<ReadingListResponseDto> findReadingDesc(Long user_id, Long book_id) {
+            return readingRepository.findAllDescbyBook_User(user_id,book_id).stream()
+                    .map(ReadingListResponseDto::new)
+                    .collect(Collectors.toList());
+    }
 }

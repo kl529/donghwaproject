@@ -73,6 +73,11 @@ public class ReadingApiController {
         return readingService.findAllDesc(id, option);
     }
 
+    @GetMapping("/api/v1/reading/list/all/{user_id}/{book_id}") // user_id와 book_id 겹치는 reading 찾는 request
+    public List<ReadingListResponseDto> findAllByAll(@PathVariable Long user_id, @PathVariable Long book_id) {
+        return readingService.findReadingDesc(user_id, book_id);
+    }
+
     @PostMapping("/api/v1/reading/tts") // -> id에 따라 모든 인자값 받아오는 API
     public String synthesize (String input_text) throws Exception {
             RestTemplate restTemplate = new RestTemplate();
