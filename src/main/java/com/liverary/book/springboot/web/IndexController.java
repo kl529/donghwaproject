@@ -89,38 +89,52 @@ public class IndexController {
 
     @GetMapping("/book/content/{bookKey}")
     public String bookContent(@PathVariable Long bookKey, Model model){
+
         // book-content.mustache를 통해 책 내용을 보이기 위해필요
-        BookResponseDto dto = bookService.findById(bookKey);
-        model.addAttribute("book",dto);
+        BookResponseDto bookDto = bookService.findById(bookKey);
+        model.addAttribute("book",bookDto);
 
         // bookKey를 갖는 책이 reading에 들어있는지 확인 필요
-        readingService.findAllDesc(bookKey, 0);
-
-        // 해당 bookKey와 userKey를 갖는 reading 생성 필요 -> startreading
-        // Book과 User을 리턴할수 있는 새로운 코드를 작성한다 (V)
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
         String email = sessionUser.getEmail();
-        Book currentBook = bookService.findByIdBook(bookKey);
-        User currentUser = userService.findByEmailUser(email);
+        Long userKey = userService.getUserKey(email);
+        List<ReadingListResponseDto> reading = readingService.findReadingDesc(userKey, bookKey);
+        Long readingKey = null;
 
-        ReadingSaveRequestDto requestDto = ReadingSaveRequestDto.builder()
-                .book(currentBook)
-                .user(currentUser)
-                .currentPage(1)
-                .score(0)
-                .isWrittenBookReport(0)
-                .bookReport("")
-                .build();
-        Long readingKey = readingService.StartReading(requestDto);
-        
-        // 같은 책 내용 페이지에 재접속 했을때 문제 발생
+        if (reading.size()==1){
+            // 이미 reading에 존재하는 경우
+            ReadingListResponseDto readingListDto = reading.get(0);
+            readingKey = readingListDto.getId();
 
-        // 읽는 중인 페이지관리
+        }else if(reading.size()>=2){
+            // reading에 여러개가 존재하는 경우 -> 발생하면 안됨
+            System.out.println("Error : userKey와 bookKey가 모두 일치하는 reading이 2개 이상입니다.");
 
+        }else{
+            // reading에 존재하지 않는 경우(해당책을 사용자가 처음 읽기 시작함)
+            // 해당 bookKey와 userKey를 갖는 reading 생성 필요 -> startreading
+            // Book과 User을 리턴할수 있는 새로운 코드를 작성한다 (V)
+            Book currentBook = bookService.findByIdBook(bookKey);
+            User currentUser = userService.findByEmailUser(email);
 
+            ReadingSaveRequestDto requestDto = ReadingSaveRequestDto.builder()
+                    .book(currentBook)
+                    .user(currentUser)
+                    .currentPage(1)
+                    .score(0)
+                    .isWrittenBookReport(0)
+                    .bookReport("")
+                    .build();
+            readingKey = readingService.StartReading(requestDto);
+        }
 
-
-
+        // 페이지관리
+        if(readingKey != null){
+            ReadingResponseDto readingDto = readingService.findById(readingKey);
+            String bookContent = bookDto.getBookContent();
+            int currentPage = readingDto.getCurrentpage();
+            model.addAttribute("reading", readingDto);
+        }
 
         return "book-content";
     }
