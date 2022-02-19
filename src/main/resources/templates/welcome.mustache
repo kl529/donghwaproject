@@ -11,12 +11,14 @@
             {{#userName}}
                 <span id="user">{{userName}}</span>님 안녕하세요
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                <a href="/homepage" class="btn btn-info active">홈페이지</a>
             {{/userName}}
             {{^userName}}
                 <a href="/oauth2/authorization/google"
                    class="btn btn-success active"
                    role="button"> Google Login </a>
             {{/userName}}
+
         </div>
     </div>
     <!-- 로그인 기능 영역 -->

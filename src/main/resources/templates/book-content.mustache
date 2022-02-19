@@ -14,11 +14,28 @@
 <!--            책내용 우-->
 <!--        </div>-->
     </div>
-    <div clas="row">
-        하단 버튼
+    <div class="row">
+        <div class="col">이전 페이지로</div>
+        <div>현재 페이지를 여기에 표시하자</div>
+        <div class="col">다음 페이지로</div>
     </div>
 {{/book}}
 {{^book}}
     해당 책이 존재 하지 않습니다.
 {{/book}}
+<script>
+    var content = document.getElementById('bookContent');
+    var contSplit = content.innerHTML.split(/\n\s*\n/); //더블엔터 기준으로 문단 나누기
+
+    for(var i in contSplit){
+       document.write( '<div class="pages" id="page_'+parseInt(parseInt(i)+1)+'"> <p>'+ contSplit[i] + '</p></div>' );
+    }
+
+    var totalPage = contSplit.length; // 나눠진 문단의 개수
+    document.getElementById('bookContent').hidden='true'; // 기존 content안보이게 처리
+
+    // 모든 페이지를 안보이게 처리
+    for (let el of document.querySelectorAll('.pages')) el.style.visibility = 'collapse'; 
+    // 일부 페이지만 보이게 처리
+</script>
 {{>layout/footer}}
