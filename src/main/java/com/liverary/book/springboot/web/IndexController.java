@@ -110,10 +110,6 @@ public class IndexController {
                 .build();
         readingService.StartReading(requestDto);
 
-
-
-
-
         return "book-content";
     }
 
@@ -138,7 +134,26 @@ public class IndexController {
         return "myinfo";
     }
 
+    @GetMapping("/tts")
+    public String gettts(Model model){
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("userName", user.getEmail());
+        }
 
+        // readingList를 bookList로 바꾸어 model에 추가
+        String email = user.getEmail();
+        Long userKey = userService.getUserKey(email);
+        List<ReadingListResponseDto> readingList = readingService.findAllDesc(userKey,1);
+        List<BookResponseDto> bookList = new ArrayList<>();
+        for(int i = 0 ; i <(readingList).size(); i++){
+            BookResponseDto dto = new BookResponseDto(readingList.get(i).getBook());
+            bookList.add(dto);
+        }
+        model.addAttribute("reading",bookList);
+
+        return "tts";
+    }
 
 }
 

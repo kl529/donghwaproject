@@ -3,13 +3,7 @@ package com.liverary.book.springboot.web;
 import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.domain.book.BookRepository;
 import com.liverary.book.springboot.web.dto.book.BookSaveRequestDto;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import com.liverary.book.springboot.web.dto.book.BookUpdateRequestDto;
->>>>>>> origin/yes
-=======
->>>>>>> origin/ykm
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -81,7 +75,6 @@ public class BookApiControllerTest {
 
         //이하 생략
     }
-<<<<<<< HEAD
     @Test
     public void UpdateBook_test() throws Exception {
         Book savedBook = bookRepository.save(Book.builder()
@@ -119,7 +112,6 @@ public class BookApiControllerTest {
 
 
 
-=======
 
     @Test
     public void book_삭제된다() throws Exception {
@@ -159,5 +151,4 @@ public class BookApiControllerTest {
         restTemplate.delete(url, params);
     }
 
->>>>>>> origin/ykm
 }

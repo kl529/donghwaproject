@@ -39,14 +39,13 @@ var main={
     delete : function(){
         var id = $('#id').val();
 
-
         $.ajax({
             type: 'DELETE',
             url: '/api/v1/books/'+id,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function(){
-            alert('글이 삭제되었습니다.')
+            alert('책이 삭제되었습니다.')
             window.location.href = '/homepage';
         }).fail(function(error){
             alert(JSON.stringify(error));
