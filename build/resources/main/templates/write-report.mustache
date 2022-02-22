@@ -2,4 +2,15 @@
 {{>layout/header}}
 <h1>독후감 작성 페이지</h1>
 
+<div class="col-md-4">
+    <label for="review">독후감 작성</label>
+    <textarea class="form-control"
+              id = "review" placeholder="독후감을 입력하세요" rows="5" cols="30">
+    </textarea>
+
+    <a role="button" class="btn btn-review-primary" id="btn-review-save">등록</a>
+    <a href="/book/info{{bookKey}}" role="button" class="btn btn-review-secondary" >취소</a>
+
+</div>
+
 {{>layout/footer}}

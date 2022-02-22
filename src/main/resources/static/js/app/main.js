@@ -50,6 +50,25 @@ var main={
         }).fail(function(error){
             alert(JSON.stringify(error));
         })
+    },
+    review_save : function(){
+        var data ={
+            review : $('#review').val(),
+            writeDate : $('#writeDate').val(),
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/books/admin',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('독후감이 등록되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error){
+            alert(JSON.stringify(error));
+        });
     }
 };
 

@@ -134,6 +134,31 @@ public class IndexController {
         return "myinfo";
     }
 
+    @GetMapping("/reading/save_review/{bookKey}")
+    public String bookReviewSave(@PathVariable Long bookKey){
+//        BookResponseDto dto = bookService.findById(bookKey);
+//        model.addAttribute("book",dto);
+//
+//        // 해당 bookKey와 userKey를 갖는 reading 생성 필요 -> startreading
+//        // Book과 User을 리턴할수 있는 새로운 코드를 작성한다 (V)
+//        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+//        String email = sessionUser.getEmail();
+//        Book currentBook = bookService.findByIdBook(bookKey);
+//        User currentUser = userService.findByEmailUser(email);
+//
+//        ReadingSaveRequestDto requestDto = ReadingSaveRequestDto.builder()
+//                .book(currentBook)
+//                .user(currentUser)
+//                .currentPage(1)
+//                .score(0)
+//                .isWrittenBookReport(0)
+//                .bookReport("")
+//                .build();
+//        readingService.StartReading(requestDto);
+
+        return "write-report";
+    }
+
     @GetMapping("/tts")
     public String gettts(Model model){
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
