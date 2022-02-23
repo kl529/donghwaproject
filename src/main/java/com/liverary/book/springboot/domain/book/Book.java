@@ -1,5 +1,6 @@
 package com.liverary.book.springboot.domain.book;
 
+import com.liverary.book.springboot.domain.file.Files;
 import com.liverary.book.springboot.domain.reading.Reading;
 import com.liverary.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
@@ -35,6 +36,10 @@ public class Book extends BaseTimeEntity {
     @Column(length = 500 , nullable = false)
     private String bookCover;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fno")
+    private Files files;
+
     @Column(columnDefinition = "TEXT", nullable = false)
     private String bookContent;
 
@@ -49,6 +54,7 @@ public class Book extends BaseTimeEntity {
 
     @Column
     private Long fileId;
+
     @Builder
     public Book(String title, String author, String publisher, String country, String bookIntro, String bookCover, String bookContent, int totalPage, Date publishedDate, Long fileId){
         this.title = title ;
