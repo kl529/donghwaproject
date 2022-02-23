@@ -138,15 +138,17 @@ public class IndexController {
     @GetMapping("/reading/save_review/{bookKey}")
     public String bookReviewSave(@PathVariable Long bookKey, Model model){
         BookResponseDto dto = bookService.findById(bookKey);
+
+//        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+//        String email = sessionUser.getEmail();
+//        User currentUser = userService.findByEmailUser(email);
+
         model.addAttribute("book",dto);
 //
 //        // 해당 bookKey와 userKey를 갖는 reading 생성 필요 -> startreading
 //        // Book과 User을 리턴할수 있는 새로운 코드를 작성한다 (V)
         //----
-//        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-//        String email = sessionUser.getEmail();
-//        Book currentBook = bookService.findByIdBook(bookKey);
-//        User currentUser = userService.findByEmailUser(email);
+
 //        ReadingListResponseDto rdto = readingService.findReadingDesc(currentUser.getUserKey(), currentBook.getBookKey()).get(0);
 //
 //        ReadingUpdateRequestDto requestDto = ReadingUpdateRequestDto.builder()
