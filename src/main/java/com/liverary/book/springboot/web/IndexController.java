@@ -131,7 +131,6 @@ public class IndexController {
         // 페이지관리
         if(readingKey != null){
             ReadingResponseDto readingDto = readingService.findById(readingKey);
-            String bookContent = bookDto.getBookContent();
             int currentPage = readingDto.getCurrentpage();
             model.addAttribute("reading", readingDto);
         }
