@@ -14,6 +14,7 @@ import com.liverary.book.springboot.web.dto.book.BookUpdateRequestDto;
 import com.liverary.book.springboot.web.dto.reading.ReadingListResponseDto;
 import com.liverary.book.springboot.web.dto.reading.ReadingResponseDto;
 import com.liverary.book.springboot.web.dto.reading.ReadingSaveRequestDto;
+import com.liverary.book.springboot.web.dto.reading.ReadingUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -135,27 +136,28 @@ public class IndexController {
     }
 
     @GetMapping("/reading/save_review/{bookKey}")
-    public String bookReviewSave(@PathVariable Long bookKey){
-//        BookResponseDto dto = bookService.findById(bookKey);
-//        model.addAttribute("book",dto);
+    public String bookReviewSave(@PathVariable Long bookKey, Model model){
+        BookResponseDto dto = bookService.findById(bookKey);
+        model.addAttribute("book",dto);
 //
 //        // 해당 bookKey와 userKey를 갖는 reading 생성 필요 -> startreading
 //        // Book과 User을 리턴할수 있는 새로운 코드를 작성한다 (V)
+        //----
 //        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
 //        String email = sessionUser.getEmail();
 //        Book currentBook = bookService.findByIdBook(bookKey);
 //        User currentUser = userService.findByEmailUser(email);
+//        ReadingListResponseDto rdto = readingService.findReadingDesc(currentUser.getUserKey(), currentBook.getBookKey()).get(0);
 //
-//        ReadingSaveRequestDto requestDto = ReadingSaveRequestDto.builder()
+//        ReadingUpdateRequestDto requestDto = ReadingUpdateRequestDto.builder()
 //                .book(currentBook)
 //                .user(currentUser)
-//                .currentPage(1)
-//                .score(0)
-//                .isWrittenBookReport(0)
+//                .currentPage(rdto.getCurrentpage()) // 현재 페이지 설정
+//                .score(rdto.getScore()) //현재 점수
+//                .isWrittenBookReport(1)
 //                .bookReport("")
 //                .build();
-//        readingService.StartReading(requestDto);
-
+//        readingService.SaveBookReport(rdto.getId(), requestDto);
         return "write-report";
     }
 

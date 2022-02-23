@@ -126,13 +126,6 @@ public class ReadingApiController {
 
 
             return "success";
-
-//            File result2 = responseEntity.getBody();
-//            System.out.println(result);
-//            return result;
     }
-//    @PutMapping("/api/v1/reading/record/{id}")
-//    public Long record(@PathVariable Long id, @RequestBody ReadingUpdateRequestDto requestDto) { // 녹음해서 넣는건데.. 아직 안됨
-//        return readingService.update(id, requestDto);
-//    }
+
 }
