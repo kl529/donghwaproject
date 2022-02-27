@@ -9,6 +9,7 @@
         </div>
     </div>
     {{#reading}}
+        <div id="readingKey" style="display: none">{{readingKey}}</div>
         <div class="row">
             <div class="col"><button id="btn-prevPage" role="button">이전 페이지로</button></div>
             <div class="col" id="currentPage">{{currentpage}}</div>
@@ -25,7 +26,7 @@
     var contSplit = content.innerHTML.split(/\n\s*\n/); //더블엔터 기준으로 문단 나누기
 
     for(var i in contSplit){
-       document.write( '<div class="pages" id="page_'+parseInt(parseInt(i)+1)+'"> <p>'+ contSplit[i] + '</p></div>' );
+       document.write( '<div class="pages multi" id="page_'+parseInt(parseInt(i)+1)+'"> <p>'+ contSplit[i] + '</p></div>' );
     }
 
     var totalPage = contSplit.length; // 나눠진 문단의 개수
@@ -35,11 +36,18 @@
     for (let el of document.querySelectorAll('.pages')) {
         el.style.display = 'none';
     }
+
     // 일부 페이지만 보이게 처리
-
     var currentPage = Number( document.getElementById('currentPage').innerHTML );
-
+    var targetPage = "page_" + currentPage;
+    document.getElementById(targetPage).style.display = 'block';
 
 
 </script>
+
+<style>
+    .multi{
+        column-count : 2;
+    }
+</style>
 {{>layout/footer}}

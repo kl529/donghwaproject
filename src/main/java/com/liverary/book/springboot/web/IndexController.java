@@ -133,6 +133,7 @@ public class IndexController {
             ReadingResponseDto readingDto = readingService.findById(readingKey);
             int currentPage = readingDto.getCurrentpage();
             model.addAttribute("reading", readingDto);
+            model.addAttribute("readingKey", readingKey);
         }
 
         return "book-content";

@@ -59,14 +59,14 @@ var main={
     },
 
     prevPage : function(){
-        var currentPage = Number( document.getElementById('currentPage').innerHTML );
-        var id = 7;
+        var currentPage = Number(document.getElementById('currentPage').innerHTML);
+        var id = Number(document.getElementById('readingKey').innerHTML);
 
         var data = {
-           option : currentPage-1
+           option : 0
         };
 
-        if(currentPage > 1){
+        if(1 < currentPage){
             $.ajax({
                 type: 'PUT',
                 url : '/api/v1/reading/calcpage/'+id,
@@ -82,12 +82,12 @@ var main={
     },
 
     nextPage : function(){
-        var currentPage = $('#currentPage').val();
-        var totalPage = document.querySelectorAll('.pages').length;
-        var id = 7;
+        var currentPage = Number(document.getElementById('currentPage').innerHTML);
+        var totalPage = Number( document.querySelectorAll('.pages').length );
+        var id = Number(document.getElementById('readingKey').innerHTML);
 
         var data = {
-           option : currentPage+1
+           option : 1
         };
 
         if(currentPage < totalPage){
