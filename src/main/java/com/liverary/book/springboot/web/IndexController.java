@@ -70,8 +70,19 @@ public class IndexController {
         if(user != null){
             model.addAttribute("userName", user.getEmail());
         }
-
          model.addAttribute("books",bookService.findAllDesc());
+
+        // readingList를 bookList로 바꾸어 model에 추가
+        String email = user.getEmail();
+        Long userKey = userService.getUserKey(email);
+        List<ReadingListResponseDto> readingList = readingService.findAllDesc(userKey,1);
+        List<BookResponseDto> bookList = new ArrayList<>();
+        for(int i = 0 ; i <(readingList).size(); i++){
+            BookResponseDto dto = new BookResponseDto(readingList.get(i).getBook());
+            bookList.add(dto);
+        }
+        model.addAttribute("myBooks",bookList);
+
         return "home";
     }
 

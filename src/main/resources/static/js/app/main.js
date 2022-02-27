@@ -7,6 +7,9 @@ var main={
         $('#btn-delete').on('click', function(){
             _this.delete();
         });
+        $('#btn-firstPage').on('click', function() {
+            _this.firstPage();
+        });
         $('#btn-prevPage').on('click', function(){
             _this.prevPage();
         });
@@ -59,6 +62,10 @@ var main={
         }).fail(function(error){
             alert(JSON.stringify(error));
         })
+    },
+
+    firstPage : function(){
+
     },
 
     prevPage : function(){
