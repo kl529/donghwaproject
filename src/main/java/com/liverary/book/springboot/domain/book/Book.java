@@ -6,6 +6,7 @@ import com.liverary.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Entity(name = "book")
 public class Book extends BaseTimeEntity {
     @Id
@@ -36,9 +38,7 @@ public class Book extends BaseTimeEntity {
     @Column(length = 500 , nullable = false)
     private String bookCover;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fno")
-    private Files files;
+
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String bookContent;

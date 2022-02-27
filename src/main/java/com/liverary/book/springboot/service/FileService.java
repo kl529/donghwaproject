@@ -2,31 +2,40 @@ package com.liverary.book.springboot.service;
 
 import com.liverary.book.springboot.domain.file.FileRepository;
 import com.liverary.book.springboot.domain.file.Files;
+import com.liverary.book.springboot.web.dto.FileDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
+import javax.transaction.Transactional;
+
 import java.io.IOException;
 
 @Service
 public class FileService {
-    @Autowired
-    FileRepository fileRepository;
+    private FileRepository fileRepository;
 
-    public void save(Files files){
-        Files f = new Files();
-        f.setFilename(files.getFilename());
-        f.setFileOriName(files.getFileOriName());
-        f.setFileurl(files.getFileurl());
-        fileRepository.save(f);
-    }
-    public void uploadFile(MultipartFile file) throws IOException {
-        file.transferTo(new File("C:\\" + file.getOriginalFilename()));
-    }
-    public Files findByFno (int id ){
-        return fileRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 id = " + id));
+    public FileService(FileRepository fileRepository) {
+        this.fileRepository = fileRepository;
     }
 
+    @Transactional
+    public Long saveFile(FileDto fileDto) {
+        System.out.println(fileDto.toEntity().toString());
+
+        return fileRepository.save(fileDto.toEntity()).getId();
+    }
+
+    @Transactional
+    public FileDto getFile(Long id) {
+        Files file = fileRepository.findById(id).get();
+
+        FileDto fileDto = FileDto.builder()
+                .origFilename(file.getOrigFilename())
+                .filename(file.getFilename())
+                .filePath(file.getFilePath())
+                .build();
+        return fileDto;
+    }
 }

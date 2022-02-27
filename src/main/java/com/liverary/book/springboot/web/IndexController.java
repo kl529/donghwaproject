@@ -88,17 +88,12 @@ public class IndexController {
         return "myinfo";
     }
 
-    @GetMapping("/filetest")
+    @GetMapping("/test")
     public String fileTest()
         {
-            return "file";
+            return "post";
         }
 
-    @PostMapping("/upload")
-    public String uploadFile(@RequestPart MultipartFile file ) throws IOException {
-        fileService.uploadFile(file);
-        return "redirect:/";
-    }
 
 }
 

@@ -1,21 +1,31 @@
 package com.liverary.book.springboot.domain.file;
 
 import com.liverary.book.springboot.domain.book.Book;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
-
-@Data
+@Getter
 @Entity
+@NoArgsConstructor
 public class Files {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int fno;
+    private Long id;
 
-    String filename;
-    String fileOriName;
-    String fileurl;
+    @Column(nullable = false)
+    private String origFilename;
 
-    @OneToOne(mappedBy = "files")
-    private Book book;
+    @Column(nullable = false)
+    private String filename;
+
+    @Column(nullable = false)
+    private String filePath;
+
+    @Builder
+    public Files(Long id, String origFilename, String filename, String filePath) {
+        this.id = id;
+        this.origFilename = origFilename;
+        this.filename = filename;
+        this.filePath = filePath;
+    }
 }
