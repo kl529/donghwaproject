@@ -12,18 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+
 @RequiredArgsConstructor
 @Controller
 public class BookController {
-    private FileService fileService;
-    private BookService bookService;
-    public BookController(BookService bookService, FileService fileService){
-        this.bookService = bookService;
-        this.fileService = fileService;
-    }
+    private final FileService fileService;
+    private final BookService bookService;
+
     @PostMapping("/posts")
     public String write(@RequestParam("file") MultipartFile files, BookSaveRequestDto bookSaveRequestDto) {
         System.out.println("Post Mapping");
+        System.out.println(bookSaveRequestDto.getAuthor());
         try {
             String origFilename = files.getOriginalFilename();
             String filename = new MD5Generator(origFilename).toString();
@@ -52,6 +51,6 @@ public class BookController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "home";
+        return "redirect:/homepage";
     }
 }

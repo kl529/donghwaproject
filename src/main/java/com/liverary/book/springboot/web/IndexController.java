@@ -67,7 +67,7 @@ public class IndexController {
 
     @GetMapping("/book/save")
     public String bookSave(){
-        return "book-save";
+        return "post";
     }
 
     @GetMapping("/book/delete")
@@ -88,11 +88,7 @@ public class IndexController {
         return "myinfo";
     }
 
-    @GetMapping("/test")
-    public String fileTest()
-        {
-            return "post";
-        }
+
 
 
 }
