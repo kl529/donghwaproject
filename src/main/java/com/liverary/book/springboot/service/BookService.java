@@ -24,11 +24,18 @@ public class BookService {
     public Long save (BookSaveRequestDto bookSaveRequestDto){
         return bookRepository.save(bookSaveRequestDto.toEntity()).getBookKey();
     }
+
     // id별로 책 찾기
     public BookResponseDto findById(Long id){
         Book entity = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 id = " + id));
         return new BookResponseDto(entity);
     }
+
+    public Book findByIdBook(Long id){
+        Book entity = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 id = " + id));
+        return entity;
+    }
+
     // 등록일 기준 정렬 후 책 정보 출력
     @Transactional(readOnly = true)
     public List<BookIntroDto> findAllDesc(){

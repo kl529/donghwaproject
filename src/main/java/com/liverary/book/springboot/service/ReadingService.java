@@ -23,7 +23,7 @@ public class ReadingService {
     @Transactional
     public Long SaveBookReport(Long id, ReadingUpdateRequestDto requestDto) {
         Reading reading = readingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 reading이 없습니다. id=" + id));
 
         String input = requestDto.getBookReport();
         try{
@@ -42,7 +42,7 @@ public class ReadingService {
     @Transactional
     public Long GiveScore(Long id, ReadingUpdateRequestDto requestDto) {
         Reading reading = readingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 reading이 없습니다. id=" + id));
 
         int score = requestDto.getScore();
         try{
@@ -62,7 +62,7 @@ public class ReadingService {
     @Transactional
     public Long CalcPage(Long id, ReadingCalcCurrentPageDto requestDto) {
         Reading reading = readingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 reading이 없습니다. id=" + id));
 
         reading.pageUpdate(requestDto.getOption());
 
@@ -72,7 +72,7 @@ public class ReadingService {
     @Transactional
     public Long update(Long id, ReadingUpdateRequestDto requestDto) {
         Reading reading = readingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 reading이 없습니다. id=" + id));
 
         reading.update( requestDto.getBook(), requestDto.getUser(), requestDto.getCurrentPage(), requestDto.getScore(), requestDto.getIsWrittenBookReport(), requestDto.getBookReport());
 
@@ -82,7 +82,7 @@ public class ReadingService {
     @Transactional
     public void delete (Long id) {
         Reading reading = readingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 reading이 없습니다. id=" + id));
 
         readingRepository.delete(reading);
     }
@@ -90,7 +90,7 @@ public class ReadingService {
     @Transactional(readOnly = true)
     public ReadingResponseDto findById(Long id) { //이걸로 모든 GET~~~를 대체해버리자
         Reading entity = readingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 reading이 없습니다. id=" + id));
 
         return new ReadingResponseDto(entity);
     }
@@ -110,5 +110,12 @@ public class ReadingService {
 //        return readingRepository.findAllDesc().stream()
 //                .map(readingListResponseDto::new)
 //                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<ReadingListResponseDto> findReadingDesc(Long user_id, Long book_id) {
+        return readingRepository.findAllDescbyBook_User(user_id,book_id).stream()
+                    .map(ReadingListResponseDto::new)
+                    .collect(Collectors.toList());
     }
 }
