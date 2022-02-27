@@ -54,11 +54,7 @@ var main={
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function(){
-<<<<<<< HEAD
             alert('책이 삭제되었습니다.');
-=======
-            alert('책이 삭제되었습니다.')
->>>>>>> origin/yes
             window.location.href = '/homepage';
         }).fail(function(error){
             alert(JSON.stringify(error));

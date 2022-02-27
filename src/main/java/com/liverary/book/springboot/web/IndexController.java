@@ -5,12 +5,9 @@ import com.liverary.book.springboot.domain.book.Book;
 import com.liverary.book.springboot.domain.user.User;
 import com.liverary.book.springboot.service.BookService;
 
-<<<<<<< HEAD
 import com.liverary.book.springboot.service.ReadingService;
 import com.liverary.book.springboot.service.UserService;
-=======
 import com.liverary.book.springboot.service.FileService;
->>>>>>> origin/yes
 import com.liverary.book.springboot.web.dto.book.BookIntroDto;
 import com.liverary.book.springboot.web.dto.book.BookResponseDto;
 import com.liverary.book.springboot.web.dto.book.BookUpdateRequestDto;
@@ -31,12 +28,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.Session;
 import javax.servlet.http.HttpSession;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
-=======
-import java.io.IOException;
->>>>>>> origin/yes
+
 
 
 @RequiredArgsConstructor
@@ -44,14 +38,10 @@ import java.io.IOException;
 public class IndexController {
 
     private final BookService bookService;
-<<<<<<< HEAD
     private final ReadingService readingService;
     private final HttpSession httpSession;
     private final UserService userService;
-=======
     private final FileService fileService;
-
->>>>>>> origin/yes
 
     @GetMapping("/books/update/{id}")
     public String bookUpdate(@PathVariable Long id, Model model ){
