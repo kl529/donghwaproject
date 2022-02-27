@@ -1,6 +1,8 @@
 package com.liverary.book.springboot.web;
 
 import com.liverary.book.springboot.service.BookService;
+import com.liverary.book.springboot.service.FileService;
+import com.liverary.book.springboot.util.MD5Generator;
 import com.liverary.book.springboot.web.dto.book.BookIntroDto;
 import com.liverary.book.springboot.web.dto.book.BookResponseDto;
 import com.liverary.book.springboot.web.dto.book.BookSaveRequestDto;
@@ -10,7 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -18,14 +24,12 @@ import java.util.List;
 public class BookApiController {
 
     private final BookService bookService;
-
     @PostMapping("/api/v1/books/admin")
     public Long save(@RequestBody BookSaveRequestDto requestDto){
         return bookService.save(requestDto);
     }
 
-
-    @GetMapping("/api/v1/books/{id}")
+        @GetMapping("/api/v1/books/{id}")
     public BookResponseDto findById(@PathVariable Long id ){
         return bookService.findById(id);
     }

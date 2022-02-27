@@ -19,24 +19,24 @@ var main={
     },
 
     save : function(){
-        var data ={
-            title : $('#title').val(),
-            author : $('#author').val(),
-            publisher : $('#publisher').val(),
-            country : $('#country').val(),
-            bookIntro : $('#bookIntro').val(),
-            bookCover : $('#bookCover').val(),
-            bookContent : $('#bookContent').val(),
-            totalPage : $('#totalPage').val(),
-            publishedDate : $('#publishedDate').val(),
-        };
 
+        var form = $('bookContent')[0];
+        var formData = new FormData(form);
+
+          formData.append("title" , $('#title').val());
+          formData.append("author" , $('#author').val());
+          formData.append("publisher" , $('#publisher').val());
+          formData.append("bookCover" , $('#bookCover').val());
+          formData.append("totalPage" , $('#totalPage').val());
+          formData.append("publishedDate" , $('#publishedDate').val());
+          formData.append("country" , $('#country').val());
+          formData.append("bookIntro" , $('#bookIntro').val());
         $.ajax({
             type: 'POST',
             url: '/api/v1/books/admin',
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data)
+            contentType: false,
+            processData : false,
+            data: formData
         }).done(function() {
             alert('글이 등록되었습니다.');
             window.location.href = '/';

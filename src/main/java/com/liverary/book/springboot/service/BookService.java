@@ -67,6 +67,21 @@ public class BookService {
 
         bookRepository.delete(book);
     }
-
+    @Transactional
+    public BookSaveRequestDto getBook(Long id){
+        Book book = bookRepository.findById(id).get();
+        BookSaveRequestDto bookSaveRequestDto = BookSaveRequestDto.builder()
+                .title(book.getTitle())
+                .author(book.getAuthor())
+                .bookIntro(book.getBookIntro())
+                .bookContent(book.getBookContent())
+                .bookCover(book.getBookCover())
+                .country(book.getCountry())
+                .totalPage(book.getTotalPage())
+                .publishedDate(book.getPublishedDate())
+                .publisher(book.getPublisher())
+                .fileId(book.getFileId()).build();
+        return bookSaveRequestDto;
+    }
 
 }
