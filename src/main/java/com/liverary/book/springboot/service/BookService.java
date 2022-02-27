@@ -54,7 +54,7 @@ public class BookService {
     @Transactional
     public Long update(Long id, BookUpdateRequestDto requestDto){
         Book book = bookRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
-        book.update(requestDto.getBookIntro(), requestDto.getBookContent(), requestDto.getBookCover() );
+        book.update(requestDto.getBookIntro(), requestDto.getBookContent());
         return id;
     }
 
@@ -75,7 +75,6 @@ public class BookService {
                 .author(book.getAuthor())
                 .bookIntro(book.getBookIntro())
                 .bookContent(book.getBookContent())
-                .bookCover(book.getBookCover())
                 .country(book.getCountry())
                 .totalPage(book.getTotalPage())
                 .publishedDate(book.getPublishedDate())

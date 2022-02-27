@@ -20,10 +20,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.Session;
@@ -49,9 +46,9 @@ public class IndexController {
         model.addAttribute("book", bookResponseDto);
         return "books-update";
     }
-    @GetMapping("/api/v1/books/search/{search}")
-    public String bookSearch(@PathVariable String search,Model model ){
-        model.addAttribute("books", bookService.findBySearch(search));
+    @GetMapping("/search")
+    public String bookSearch(@RequestParam(value="keyword") String keyword, Model model ){
+        model.addAttribute("books", bookService.findBySearch(keyword));
         return "search";
     }
 

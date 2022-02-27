@@ -9,13 +9,12 @@
             LIVERARY
         </div>
         <div id="searchbar">
-            <form action="/search" method="get" id="search-form">
-                <div id="searchbar-fauxtext">
-                    <input type="text" name="q" id="search-query" value="검색어를 입력해주세요" autocomplete="off">
-                    <a href="#" id="search-submit" title="Search this wiki">
-                        <span>검색</span>
-                    </a>
+            <form action="/search" method="GET">
+                <div>
+                    <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
                 </div>
+
+                <button>검색하기</button>
             </form>
         </div>
 
@@ -64,7 +63,6 @@
     <thead class = "thead-strong">
     <tr>
         <th> 책이름 </th>
-        <th> 책 이미지 </th>
         <th> 저자명 </th>
         <th> 출판사 </th>
     </tr>
@@ -73,7 +71,6 @@
     {{#books}}
         <tr>
             <td>{{title}}</td>
-            <td><a href = "/book/info/{{bookKey}}">{{bookCover}}</a>
             <td>{{author}}</td>
             <td>{{publisher}}</td>
 
