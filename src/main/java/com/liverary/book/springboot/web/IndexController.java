@@ -98,7 +98,6 @@ public class IndexController {
         // bookKey를 갖는 책이 reading에 들어있는지 확인 필요
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
         String email = sessionUser.getEmail();
-<<<<<<< HEAD
         Long userKey = userService.getUserKey(email);
         List<ReadingListResponseDto> reading = readingService.findReadingDesc(userKey, bookKey);
         Long readingKey = null;
@@ -137,20 +136,6 @@ public class IndexController {
             model.addAttribute("reading", readingDto);
             model.addAttribute("readingKey", readingKey);
         }
-=======
-        Book currentBook = bookService.findByIdBook(bookKey);
-        User currentUser = userService.findByEmailUser(email);
-
-        ReadingSaveRequestDto requestDto = ReadingSaveRequestDto.builder()
-                .book(currentBook)
-                .user(currentUser)
-                .currentPage(1)
-                .score(0)
-                .isWrittenBookReport(0)
-                .bookReport("")
-                .build();
-        readingService.StartReading(requestDto);
->>>>>>> feature-tts
 
         return "book-content";
     }

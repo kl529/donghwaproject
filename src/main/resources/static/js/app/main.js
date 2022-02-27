@@ -7,16 +7,14 @@ var main={
         $('#btn-delete').on('click', function(){
             _this.delete();
         });
-<<<<<<< HEAD
         $('#btn-prevPage').on('click', function(){
             _this.prevPage();
         });
-        $('#btn-nextPage').on('click', function(){
+        $('#btn-nextPage').on('click', function() {
             _this.nextPage();
-=======
+        });
         $('#btn-review-save').on('click', function(){
             _this.review_save();
->>>>>>> feature-tts
         });
     },
 
@@ -62,7 +60,6 @@ var main={
             alert(JSON.stringify(error));
         })
     },
-<<<<<<< HEAD
 
     prevPage : function(){
         var currentPage = Number(document.getElementById('currentPage').innerHTML);
@@ -87,29 +84,29 @@ var main={
         }
     },
 
-    nextPage : function(){
+    nextPage : function() {
         var currentPage = Number(document.getElementById('currentPage').innerHTML);
-        var totalPage = Number( document.querySelectorAll('.pages').length );
+        var totalPage = Number(document.querySelectorAll('.pages').length);
         var id = Number(document.getElementById('readingKey').innerHTML);
 
         var data = {
-           option : 1
+            option: 1
         };
 
-        if(currentPage < totalPage){
+        if (currentPage < totalPage) {
             $.ajax({
                 type: 'PUT',
-                url: '/api/v1/reading/calcpage/'+id,
+                url: '/api/v1/reading/calcpage/' + id,
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(data)
-            }).done( function(){
+            }).done(function () {
                 location.reload();
             })
-        }else{
+        } else {
             alert('다음 페이지로 이동할 수 없습니다.')
         }
-=======
+    },
     review_save : function(){
         var data ={ //여기에 데이터 id랑 ReadingUpdateRequestDto를 넣어줘야함 // Bookkey도 어디선가 가져와야함
             bookReport : $('#review').val(),
@@ -129,7 +126,6 @@ var main={
         }).fail(function (error){
             alert(JSON.stringify(error));
         });
->>>>>>> feature-tts
     }
 };
 

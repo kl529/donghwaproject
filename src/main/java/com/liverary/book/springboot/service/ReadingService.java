@@ -23,17 +23,12 @@ public class ReadingService {
 
     @Transactional
     public Long SaveBookReport(Long id, ReadingUpdateRequestDto requestDto) {
-<<<<<<< HEAD
-        Reading reading = readingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 reading이 없습니다. id=" + id));
 
-=======
         List<Reading> lists = readingRepository.findAllDescbyBook(id);
         if (lists.size() == 0 || lists.get(id.intValue()-1).getClass().getName() != "java.lang.Long"){
             new IllegalArgumentException("해당 책이 없습니다. id=" + id);
         }
         Reading reading = lists.get(id.intValue()-1);
->>>>>>> feature-tts
         String input = requestDto.getBookReport();
         try{
             if(!input.equals("")){
