@@ -1,5 +1,23 @@
 {{! 독후감 쓰는 페이지}}
 {{>layout/header}}
-<h1>독후감 작성 페이지</h1>
+<h1>독후감 작성</h1>
+
+<div class="col-md-4">
+    <label for="id">책 번호</label>
+    <input type="text" class="form-control" id="id" value="{{book.bookKey}}" readonly>
+    <label for="id">책 제목</label>
+    <input type="text" class="form-control" id="id" value="{{book.title}}" readonly>
+
+    <textarea class="form-control"
+              id = "review" placeholder="독후감을 입력하세요" rows="5" cols="30">
+    </textarea>
+<!--    <label for="publishedDate">작성 날짜</label>-->
+<!--    <input type="date" class="form-control"-->
+<!--           id = "writeDate">-->
+
+    <a role="button" class="btn btn-review-primary" id="btn-review-save">등록</a>
+    <a href="/book/info/{{book.bookKey}}" role="button" class="btn btn-review-secondary" >취소</a>
+
+</div>
 
 {{>layout/footer}}

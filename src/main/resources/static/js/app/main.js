@@ -7,11 +7,16 @@ var main={
         $('#btn-delete').on('click', function(){
             _this.delete();
         });
+<<<<<<< HEAD
         $('#btn-prevPage').on('click', function(){
             _this.prevPage();
         });
         $('#btn-nextPage').on('click', function(){
             _this.nextPage();
+=======
+        $('#btn-review-save').on('click', function(){
+            _this.review_save();
+>>>>>>> feature-tts
         });
     },
 
@@ -57,6 +62,7 @@ var main={
             alert(JSON.stringify(error));
         })
     },
+<<<<<<< HEAD
 
     prevPage : function(){
         var currentPage = Number(document.getElementById('currentPage').innerHTML);
@@ -103,6 +109,27 @@ var main={
         }else{
             alert('다음 페이지로 이동할 수 없습니다.')
         }
+=======
+    review_save : function(){
+        var data ={ //여기에 데이터 id랑 ReadingUpdateRequestDto를 넣어줘야함 // Bookkey도 어디선가 가져와야함
+            bookReport : $('#review').val(),
+        };
+
+        var id = $('#id').val();
+
+        $.ajax({
+            type: 'PUT',
+            url: '/api/v1/reading/savebookreport/'+id,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('독후감이 등록되었습니다.');
+            window.location.href = '/book/info/'+id;
+        }).fail(function (error){
+            alert(JSON.stringify(error));
+        });
+>>>>>>> feature-tts
     }
 };
 

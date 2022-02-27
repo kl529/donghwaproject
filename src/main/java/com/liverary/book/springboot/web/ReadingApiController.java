@@ -9,17 +9,25 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.StreamUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @RestController
@@ -78,15 +86,17 @@ public class ReadingApiController {
         return readingService.findReadingDesc(user_id, book_id);
     }
 
-    @PostMapping("/api/v1/reading/tts") // -> id에 따라 모든 인자값 받아오는 API
+    @PostMapping(value = "/api/v1/reading/tts", produces = "application/octet-stream") // -> id에 따라 모든 인자값 받아오는 API
     public String synthesize (String input_text) throws Exception {
             RestTemplate restTemplate = new RestTemplate();
 
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("https://kakaoi-newtone-openapi.kakao.com/v1/synthesize");
-            String result = "";
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_XML);
+            String FilePath = "";
+            File f = new File("example.mp3");
 
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("https://kakaoi-newtone-openapi.kakao.com/v1/synthesize");
+            HttpHeaders headers = new HttpHeaders();
+
+            headers.setContentType(MediaType.APPLICATION_XML);
             headers.set("Transfer-Encoding", "chunked");
             headers.set("X-DSS-Service", "DICTATION");
             headers.set("Authorization", "KakaoAK "+api_kakao);
@@ -94,20 +104,28 @@ public class ReadingApiController {
             String body = "<speak>hello my name is jiwon </speak>"; //xml로 바꾸기 //String 값 받아오기
             HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
 
-            ResponseEntity<String> responseEntity = restTemplate.exchange(
+            System.out.println("Body : "+ body+ " || header : "+ headers.toString());
+            ResponseEntity<MediaType> responseEntity = restTemplate.exchange(
                     builder.build().encode().toUri(),
                     HttpMethod.POST,
                     requestEntity,
-                    String.class
+                    MediaType.class
             );
             HttpStatus statusCode = responseEntity.getStatusCode();
+            String fileDownloadDirectory = "C:/Desktop/";
+            System.out.println("상태코드 : " + statusCode);
+            MediaType result = responseEntity.getBody();
+//            File tt = result.getAbsoluteFile();
+////
 
-            result = responseEntity.getBody();
-            System.out.println(result);
-            return result;
+//            if (!result.isEmpty()) {
+//                String downloadPath = fileDownloadDirectory + result.getOriginalFilename();
+//                result.transferTo(new File(downloadPath));
+//            }
+
+
+
+            return "success";
     }
-//    @PutMapping("/api/v1/reading/record/{id}")
-//    public Long record(@PathVariable Long id, @RequestBody ReadingUpdateRequestDto requestDto) { // 녹음해서 넣는건데.. 아직 안됨
-//        return readingService.update(id, requestDto);
-//    }
+
 }

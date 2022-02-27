@@ -7,6 +7,9 @@ var main={
         $('#btn-delete').on('click', function(){
             _this.delete();
         });
+        $('#btn-review-save').on('click', function(){
+            _this.review_save();
+        });
     },
 
     save : function(){
@@ -39,7 +42,6 @@ var main={
     delete : function(){
         var id = $('#id').val();
 
-
         $.ajax({
             type: 'DELETE',
             url: '/api/v1/books/'+id,
@@ -51,6 +53,26 @@ var main={
         }).fail(function(error){
             alert(JSON.stringify(error));
         })
+    },
+    review_save : function(){
+        var data ={ //여기에 데이터 id랑 ReadingUpdateRequestDto를 넣어줘야함 // Bookkey도 어디선가 가져와야함
+            bookReport : $('#review').val(),
+        };
+
+        var id = $('#id').val();
+
+        $.ajax({
+            type: 'PUT',
+            url: '/api/v1/reading/savebookreport/'+id,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('독후감이 등록되었습니다.');
+            window.location.href = '/book/info/'+id;
+        }).fail(function (error){
+            alert(JSON.stringify(error));
+        });
     }
 };
 

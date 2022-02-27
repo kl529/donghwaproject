@@ -14,6 +14,7 @@ import com.liverary.book.springboot.web.dto.book.BookUpdateRequestDto;
 import com.liverary.book.springboot.web.dto.reading.ReadingListResponseDto;
 import com.liverary.book.springboot.web.dto.reading.ReadingResponseDto;
 import com.liverary.book.springboot.web.dto.reading.ReadingSaveRequestDto;
+import com.liverary.book.springboot.web.dto.reading.ReadingUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -97,6 +98,7 @@ public class IndexController {
         // bookKey를 갖는 책이 reading에 들어있는지 확인 필요
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
         String email = sessionUser.getEmail();
+<<<<<<< HEAD
         Long userKey = userService.getUserKey(email);
         List<ReadingListResponseDto> reading = readingService.findReadingDesc(userKey, bookKey);
         Long readingKey = null;
@@ -135,6 +137,20 @@ public class IndexController {
             model.addAttribute("reading", readingDto);
             model.addAttribute("readingKey", readingKey);
         }
+=======
+        Book currentBook = bookService.findByIdBook(bookKey);
+        User currentUser = userService.findByEmailUser(email);
+
+        ReadingSaveRequestDto requestDto = ReadingSaveRequestDto.builder()
+                .book(currentBook)
+                .user(currentUser)
+                .currentPage(1)
+                .score(0)
+                .isWrittenBookReport(0)
+                .bookReport("")
+                .build();
+        readingService.StartReading(requestDto);
+>>>>>>> feature-tts
 
         return "book-content";
     }
@@ -160,7 +176,54 @@ public class IndexController {
         return "myinfo";
     }
 
+    @GetMapping("/reading/save_review/{bookKey}")
+    public String bookReviewSave(@PathVariable Long bookKey, Model model){
+        BookResponseDto dto = bookService.findById(bookKey);
 
+//        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+//        String email = sessionUser.getEmail();
+//        User currentUser = userService.findByEmailUser(email);
+
+        model.addAttribute("book",dto);
+//
+//        // 해당 bookKey와 userKey를 갖는 reading 생성 필요 -> startreading
+//        // Book과 User을 리턴할수 있는 새로운 코드를 작성한다 (V)
+        //----
+
+//        ReadingListResponseDto rdto = readingService.findReadingDesc(currentUser.getUserKey(), currentBook.getBookKey()).get(0);
+//
+//        ReadingUpdateRequestDto requestDto = ReadingUpdateRequestDto.builder()
+//                .book(currentBook)
+//                .user(currentUser)
+//                .currentPage(rdto.getCurrentpage()) // 현재 페이지 설정
+//                .score(rdto.getScore()) //현재 점수
+//                .isWrittenBookReport(1)
+//                .bookReport("")
+//                .build();
+//        readingService.SaveBookReport(rdto.getId(), requestDto);
+        return "write-report";
+    }
+
+    @GetMapping("/tts")
+    public String gettts(Model model){
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("userName", user.getEmail());
+        }
+
+        // readingList를 bookList로 바꾸어 model에 추가
+        String email = user.getEmail();
+        Long userKey = userService.getUserKey(email);
+        List<ReadingListResponseDto> readingList = readingService.findAllDesc(userKey,1);
+        List<BookResponseDto> bookList = new ArrayList<>();
+        for(int i = 0 ; i <(readingList).size(); i++){
+            BookResponseDto dto = new BookResponseDto(readingList.get(i).getBook());
+            bookList.add(dto);
+        }
+        model.addAttribute("reading",bookList);
+
+        return "tts";
+    }
 
 }
 
