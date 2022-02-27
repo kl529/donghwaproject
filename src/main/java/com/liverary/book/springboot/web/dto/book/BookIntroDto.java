@@ -8,14 +8,12 @@ import lombok.Getter;
 public class BookIntroDto {
     private Long bookKey;
     private String title;
-    private String bookCover;
     private String author;
     private String publisher;
 
     public BookIntroDto (Book entity){
         this.bookKey= entity.getBookKey();
         this.title = entity.getTitle();
-        this.bookCover = entity.getBookCover();
         this.author = entity.getAuthor();
         this.publisher = entity.getPublisher();
     }

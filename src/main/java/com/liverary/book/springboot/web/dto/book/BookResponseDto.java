@@ -25,7 +25,6 @@ public class BookResponseDto {
         this.publisher = entity.getPublisher();
         this.country = entity.getCountry();
         this.bookIntro = entity.getBookIntro();
-        this.bookCover = entity.getBookCover();
         this.bookContent = entity.getBookContent();
         this.totalPage = entity.getTotalPage();
         this.publishedDate = entity.getPublishedDate();
