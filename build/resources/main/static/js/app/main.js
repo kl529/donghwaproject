@@ -7,6 +7,9 @@ var main={
         $('#btn-delete').on('click', function(){
             _this.delete();
         });
+        $('#btn-firstPage').on('click', function() {
+            _this.firstPage();
+        });
         $('#btn-prevPage').on('click', function(){
             _this.prevPage();
         });
@@ -61,6 +64,10 @@ var main={
         })
     },
 
+    firstPage : function(){
+
+    },
+
     prevPage : function(){
         var currentPage = Number(document.getElementById('currentPage').innerHTML);
         var id = Number(document.getElementById('readingKey').innerHTML);
@@ -80,7 +87,7 @@ var main={
                 location.reload();
             })
         }else{
-            alert('이전 페이지로 이동할 수 없습니다.');
+            alert('첫번째 페이지 입니다.');
         }
     },
 
@@ -104,7 +111,7 @@ var main={
                 location.reload();
             })
         } else {
-            alert('다음 페이지로 이동할 수 없습니다.')
+            alert('마지막 페이지 입니다.')
         }
     },
     review_save : function(){
