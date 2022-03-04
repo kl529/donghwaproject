@@ -65,111 +65,94 @@ https://www.figma.com/file/1mX0J3iX3y7ePxbevfGsm0/Untitled
       - 책 삭제
   ```
 
-# DB Schema
-- DB
-    - **책 book**
-        - 변수
-            - **Long** bookKey
-            - **string** ISBN
-                - Nullable = false
-            - **string** 책제목 title
-                - Nullable = false
-            - **string** 저자 author
-                - Nullable = false
-            - **string** 출판사 publisher
-                - Nullable = false
-            - **string** 나라별 country
-                - Nullable = true
-            - **string** 책 소개 bookIntro
-                - Nullable = false
-            - **string** 책 표지 bookCover(이미지 파일)
-                - Nullable = false
-            - **string** 책 내용 bookContent
-                - Nullable = false
-            - **int** 전체 페이지수  totalPage
-                - Nullable = false
-            - **date** 등록날짜 createdDate
-                - Nullable = false
-            - **date** 수정날짜 modifiedDate
-                - Nullable = false
-            - **date** 출간날짜 publishedDate
-                - Nullable = false
-            - **bigint** 이미지 파일 id fileId
-                - Nullable = false
-        - 메서드
-            - getTitle
-            - getAuthor
-            - getPubliser
-            - getBookIntro
-            - getBookCover
-            - searchBook
-                - 책 검색
-    - **사용자 user**
-        - 변수
-            - **Long** userKey
-            - **string** email
-                - **int** 전체 페이지수 
-                    - Nullable = false
-                - **int** 현재 읽고 있는 페이지수
-                    - 초기값 0
-                    - Nullable = false
-                - **int** 평점
-                    - Nullable = true
-            - 소셜 로그인시 필요한 키?
-        - 메서드
-            - getUserEmail
-            - logout
-                - 로그아웃
-            - deleteAccount
-                - 사용자 계정 삭제
-            - deleteReading
-                - 읽는 중인 책 삭제
-            - loadRecentBook(int page)
-                - 책 등록 날짜 별로 정렬된 상태에서 (page-1)*==4==번째 책부터 ==4개== 뽑기
-    - **읽는중인 책 reading**
-        - == 한페이지당 글자수 제한 = 300 ==
-        - 변수
-            - **Long** userKey
-            - **Long** bookKey
-            - **int** 현재 읽고 있는 페이지수 currentPage
-                - 초기값 1
-                - Nullable = false
-            - **int** 평점 score 
-                - 최대 5
-                - Nullable = true
-            - **boolean** 독후감 여부 isWrittenBookReport
-                - 초기값 false
-            - **string** 독후감 내용 bookReport
-                - 글자수 제한 필요
-                - Nullable = true
-        - 메서드
-            - getScore
-            - getCurrentPage
-            - getIsWrittenBookReport
-            - getBookReport
-            - saveBookReport
-                - 독후감쓰기
-            - recordBookReport
-                - 독후감 녹음하기
-                - API연결 필요
-                - 목소리를 텍스트로 바꾼후 saveBookReport 호출
-            - plusCurrentPage
-                - 이전페이지로
-                - 전체 텍스트에서 제한된 글자수만큼 이동
-            - minusCurrentPage
-                - 다음페이지로
-            - PlayAudio
-                - currentPage부터 음서읽기 시작
-            - stopAudio
-                - 음성 정지
-                - stopAudio이후 다시 재생 누르면 currentPage의 시작 부분부터 재생됨
-            - giveScore
-                - 별점주기
-    - **관리자 admin**
-        - 변수
-        - 메서드
-            - createBook
-            - deleteBook
+# 3. 백엔드
+## 3.1 DB Schema
+### 1. Book Table
+| Type | Column | Extra |
+|:---:|:---:|:---:|
+Long | book_key 책키 | Nullable = False / Auto_Increment
+String | author 저자 | Nullable = False
+String | book_content 책 내용 | Nullable = False
+String | book_intro 책 소개 | Nullable = False
+String | country 나라 | Nullable = True
+Datetime | created_date 등록날짜 | Nullable = True
+Long | fileId 책표지 id | Nullable = True
+Datetime | modified_date 수정날짜 | Nullable = True
+Date | published_date 출간날짜 | Nullable = False
+String | publisher 출판사 | Nullable = False
+String | title 책제목 | Nullable = False
+Int | total_page 페이지수 | Nullable = False
+
+  
+### 2. User Table
+| Type | Column | Extra |
+|:---:|:---:|:---:|
+Long | user_key 유저키 | Nullable = False / Auto_Increment
+Datetime | created_date 등록 날짜 | Nullable = True
+String | email 이메일 | Nullable = False
+Datetime | created_date 등록 날짜 | Nullable = True
+String | role 역할 | Nullable = True
+  
+### 3. Reading Table
+| Type | Column | Extra |
+|:---:|:---:|:---:|
+Long | book_key 북키 | Nullable = True
+String | book_report 독후감 내용 | Nullable = True
+Int | current_page 현재 페이지 | Nullable = False
+Boolean | is_written_book_report 독후감 여부 | Nullable = False
+Long | reading_key 독서키 | Nullable = False / Auto_Increment
+Int | score 평점 | Nullable = False
+Long | user_key 유저키 | Nullable = True
+
+### 4. File Table
+| Type | Column | Extra |
+|:---:|:---:|:---:|
+String | file_path 파일주소 | Nullable = False
+String | filename 파일명 | Nullable = False
+Long | id 파일id | Nullable = False / Auto_Increment
+String | orig_filename 기존 파일명 | Nullable = False
+
+## 3.2 Method
+          - 메서드
+          - getTitle
+          - getAuthor
+          - getPubliser
+          - getBookIntro
+          - getBookCover
+          - searchBook
  
-# Class Diagram
+       - 메서드
+          - getUserEmail
+          - logout
+              - 로그아웃
+          - deleteAccount
+              - 사용자 계정 삭제
+          - deleteReading
+              - 읽는 중인 책 삭제
+          - loadRecentBook(int page)
+          
+       - 메서드
+          - getScore
+          - getCurrentPage
+          - getIsWrittenBookReport
+          - getBookReport
+          - saveBookReport
+              - 독후감쓰기
+          - recordBookReport
+              - 독후감 녹음하기
+              - API연결 필요
+              - 목소리를 텍스트로 바꾼후 saveBookReport 호출
+          - plusCurrentPage
+              - 이전페이지로
+              - 전체 텍스트에서 제한된 글자수만큼 이동
+          - minusCurrentPage
+              - 다음페이지로
+          - PlayAudio
+              - currentPage부터 음서읽기 시작
+          - stopAudio
+              - 음성 정지
+              - stopAudio이후 다시 재생 누르면 currentPage의 시작 부분부터 재생됨
+          - giveScore
+              - 별점주기
+## 3.3 Class Diagram
 ![ex_screenshot](./donghwadiagram.drawio.png)
