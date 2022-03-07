@@ -113,46 +113,30 @@ Long | id 파일id | Nullable = False / Auto_Increment
 String | orig_filename 기존 파일명 | Nullable = False
 
 ## 3.2 Method
-          - 메서드
-          - getTitle
-          - getAuthor
-          - getPubliser
-          - getBookIntro
-          - getBookCover
-          - searchBook
+  - Book
+    - saveBook -> 책 등록
+    - updateBook -> 책 내용 수정
+    - deleteBook -> 책 삭제
+    - getBookList -> 모든 책 리스트 받기
+    - findBookById -> Id에 따른 책 찾기
+    - findeAllSearch -> 책 키워드 검색
  
-       - 메서드
-          - getUserEmail
-          - logout
-              - 로그아웃
-          - deleteAccount
-              - 사용자 계정 삭제
-          - deleteReading
-              - 읽는 중인 책 삭제
-          - loadRecentBook(int page)
+  - Reading
+    - startReading -> 책 읽기 시작
+    - saveBookReport -> 독후감 등록하기
+    - giveScore -> 평점 주기
+    - calcPage -> 페이지 관리하기
+    - updateReading -> 읽은 책 업데이트
+    - deleteReading -> 읽은 책 삭제
+    - findById -> Id에 따른 읽은 책 찾기
+    - findAllDesc -> book_key나 user_key로 id찾기
+    - findReadingDesc -> user_key, book_key 둘다 해당하는 id 찾기
           
-       - 메서드
-          - getScore
-          - getCurrentPage
-          - getIsWrittenBookReport
-          - getBookReport
-          - saveBookReport
-              - 독후감쓰기
-          - recordBookReport
-              - 독후감 녹음하기
-              - API연결 필요
-              - 목소리를 텍스트로 바꾼후 saveBookReport 호출
-          - plusCurrentPage
-              - 이전페이지로
-              - 전체 텍스트에서 제한된 글자수만큼 이동
-          - minusCurrentPage
-              - 다음페이지로
-          - PlayAudio
-              - currentPage부터 음서읽기 시작
-          - stopAudio
-              - 음성 정지
-              - stopAudio이후 다시 재생 누르면 currentPage의 시작 부분부터 재생됨
-          - giveScore
-              - 별점주기
-## 3.3 Class Diagram
-![ex_screenshot](./donghwadiagram.drawio.png)
+  - User
+    - getUserKey -> 이메일을 통해 userKey 찾기
+    - findByEmailUser -> 이메일을 통해 유저 찾기
+    - deleteUser -> 유저 삭제
+
+  - File
+    - saveFile -> 파일 등록하기
+    - getFile -> 파일 받아오기
