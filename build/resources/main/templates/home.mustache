@@ -1,5 +1,8 @@
 
 {{>layout/header}}
+<a href="/homepage" height="5" width="10">
+    <img src="https://github.com/DongHwaTeam/donghwaproject/blob/main/logo_image.png?raw=true" width="100" style="float: right;" title="LIVERARY" alt="위의 이미지를 누르면 연결됩니다.">
+    <a>
 <h1> 동화팅 liverary 홈페이지 </h1>
 책 검색, 내정보 페이지로 연결, 전체 책 리스트 등록 일자에 따라 표시, 내가 읽고 있는 책 리스트 표시
 
@@ -45,7 +48,6 @@
     {{#myBooks}}
         <tr>
             <td>{{title}}</td>
-            <td><a href = "/book/info/{{bookKey}}">{{bookCover}}</a>
             <td>{{author}}</td>
             <td>{{publisher}}</td>
 
